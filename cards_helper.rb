@@ -1,0 +1,129 @@
+
+def have_args?
+        !ARGV.empty?
+end
+
+def config_file
+        ex_pth @@options[:config]
+end
+
+def rc_exists?
+        File.exists?(config_file)
+end
+
+def ex_pth pth
+        File.expand_path(pth)
+end
+
+def r_file pth
+        `cat #{pth}`.chomp
+end
+
+def rc what
+        cfg = YAML::load(r_file(File.dirname(ex_pth(__FILE__)) + "/rc.yaml"))
+        if rc_exists?
+                cfg.deep_merge!(YAML::load(r_file(config_file)))
+        end
+        cfg[what.to_s]
+end
+
+def clear 
+        print `clear`
+end
+
+def files_in_pth pth
+        Dir.entries(pth).select do |v|
+                !File.directory? fjoin(pth, v) and !(v =='.' || v == '..') 
+        end.natural_sort
+end
+
+def dirs_in_pth pth
+        dirs = Dir.entries(pth).select do |v| 
+                File.directory? fjoin(pth, v) and !(v =='.' || v == '..') 
+        end.natural_sort
+
+        if rc(:hide_empty_dirs)
+                dirs.select! do |v|
+                        Dir.entries(fjoin(pth, v)).size != 2
+                end
+        end
+
+        if rc(:hide_dotted_dirs)
+                dirs.select! do |v|
+                        !v.match(/^\./)
+                end
+        end
+        dirs
+end
+
+def pp_list array, label
+        if !array.empty?
+                puts "#{label}: "
+                IO.popen("pr --columns 3 -t", "r+") do |io|
+                        array.each do |v|
+                                io.puts "#{v}\n"
+                        end
+                        io.close_write
+                        puts io.readlines
+                        puts "---------------------"
+                end
+
+        end
+end
+
+def fjoin pth, v
+        File.join(pth, v)
+end
+
+def find_next_num_in_dir dir
+        `ls -v #{dir} | grep '^[0-9]*$' | tail -1`.chomp.to_i + 1
+end
+
+def dirname pth
+        File.dirname pth
+end
+def basename pth
+        File.basename pth
+end
+
+def char_gets title = ""
+  print title
+  get_character.chr.strip
+end
+
+def dmenu arr, intro = "Enter num: "
+        pp_list arr.each_index.map{|k| "#{k + 1} - #{arr[k]}"}, intro
+        t = gets.chomp
+        return unless t =~ /^[0-9]+$/
+        t = t.to_i - 1
+        arr[t]
+end
+
+def safe_mv from, to
+        system "mv --backup=t #{from} #{to}"
+end
+
+def title wtf
+        # todo
+end
+
+def default_dir
+        rc "default_dir"
+end
+@@cache = {}
+def random_file_in dir
+        unless rc("cache")
+                if t = files_in_pth(dir).choice
+                        return fjoin(dir, t)
+                end
+                return
+        end
+
+        unless @@cache[dir]
+                @@cache[dir] = files_in_pth(dir)
+        end
+
+        if t = @@cache[dir].choice
+                return fjoin(dir, t)
+        end
+end

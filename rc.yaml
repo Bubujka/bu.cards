@@ -1,0 +1,29 @@
+default_dir: ~/.db/cards
+hide_empty_dirs: true
+hide_dotted_dirs: true
+cache: false
+bind: 
+  a: edit_new_file_with_next_name 
+  A: edit_new_file_with_user_name 
+  C: copy_edit_and_return 
+  D: rm_file_and_go_rnd 
+  d: select_and_goto_dir 
+  e: edit_file 
+  f: select_and_goto_file 
+  n: create_dir_with_user_name 
+  m: move_and_return_to_rnd 
+  M: move_edit_and_return_to_rnd 
+  q: quit 
+  r: rnd_file_in_dir 
+  R: goto_random_in_default_dir
+  u: go_upper_dir 
+  h: go_home
+  ?: show_help
+  j: next_itm
+  k: prev_itm
+  x: from_clipboard_to_new_file
+  .: goto_current_dir
+  o: move_file_subdir
+  O: move_file_upsubdir
+  G: git_add_clear_and_autocommit
+  p: goto_prj_file
