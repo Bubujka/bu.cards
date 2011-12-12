@@ -32,9 +32,16 @@ def clear
 end
 
 def files_in_pth pth
-        Dir.entries(pth).select do |v|
+        arr = Dir.entries(pth).select do |v|
                 !File.directory? fjoin(pth, v) and !(v =='.' || v == '..') 
         end.natural_sort
+
+        if rc(:hide_dotted_files)
+                arr.select! do |v|
+                        !v.match(/^\./)
+                end
+        end
+        arr
 end
 
 def dirs_in_pth pth

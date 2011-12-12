@@ -1,6 +1,7 @@
 default_dir: ~/.db/cards
 hide_empty_dirs: true
 hide_dotted_dirs: true
+hide_dotted_files: true
 cache: false
 bind: 
   a: edit_new_file_with_next_name 
