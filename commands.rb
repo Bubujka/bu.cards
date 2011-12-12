@@ -246,5 +246,5 @@ dir_cmd :git_add_clear_and_autocommit do |dir|
 end
 
 dir_cmd :goto_prj_file do |dir|
-        goto_file_mode ex_pth(fjoin(dir, 'prj'))
+        goto_file_mode ex_pth(fjoin(dir, '.prj'))
 end
