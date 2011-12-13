@@ -117,20 +117,20 @@ end
 def default_dir
         rc "default_dir"
 end
-@@cache = {}
+@@watched = {}
 def random_file_in dir
-        unless rc("cache")
-                if t = files_in_pth(dir).choice
-                        return fjoin(dir, t)
-                end
-                return
+        @@watched[dir] = [] unless @@watched[dir]
+
+        files = files_in_pth(dir) or []
+        watched = @@watched[dir]
+
+        diff = files - watched
+        if diff.size <= 0
+                @@watched[dir] = []
+                diff = files
         end
 
-        unless @@cache[dir]
-                @@cache[dir] = files_in_pth(dir)
-        end
-
-        if t = @@cache[dir].choice
-                return fjoin(dir, t)
-        end
+        t = diff.choice
+        @@watched[dir].push t
+        return fjoin(dir, t)
 end
