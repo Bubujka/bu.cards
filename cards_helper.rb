@@ -131,6 +131,7 @@ def random_file_in dir
         end
 
         t = diff.choice
+        return unless t
         @@watched[dir].push t
         return fjoin(dir, t)
 end
