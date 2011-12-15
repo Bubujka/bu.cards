@@ -248,3 +248,12 @@ end
 dir_cmd :goto_prj_file do |dir|
         goto_file_mode ex_pth(fjoin(dir, '.prj'))
 end
+
+file_cmd :hide_file do |file|
+        dir = dirname(file)
+        name = basename(file)
+        dest_pth = fjoin(dir, ".#{name}")
+        #FileUtils::mkdir_p(dest_dir)
+        safe_mv(file, dest_pth)
+        rnd_file_in_dir dir
+end

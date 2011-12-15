@@ -19,6 +19,7 @@ bind:
   R: goto_random_in_default_dir
   u: go_upper_dir 
   h: go_home
+  H: hide_file
   ?: show_help
   j: next_itm
   k: prev_itm
