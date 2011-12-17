@@ -135,3 +135,10 @@ def random_file_in dir
         @@watched[dir].push t
         return fjoin(dir, t)
 end
+
+def goto_file_mode file
+        clear
+        show_current_file_line file
+        default_file_action file
+        do_what_i_say_in_file file
+end

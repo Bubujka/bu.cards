@@ -1,9 +1,3 @@
-file_cmd :goto_file_mode do |file|
-        clear
-        show_current_file_line file
-        default_file_action file
-        do_what_i_say_in_file file
-end
 
 dir_cmd :goto_dir_mode do |dir|
         clear
@@ -168,7 +162,7 @@ global_cmd :next_itm do |pth, mode|
                 end
         elsif mode == :dir
                 files = files_in_pth(pth)
-                goto_file_mode goto_file_mode ex_pth(fjoin(pth, files.first))
+                goto_file_mode ex_pth(fjoin(pth, files.first))
         end
 end
 
@@ -184,7 +178,7 @@ global_cmd :prev_itm do |pth, mode|
                 end
         elsif mode == :dir
                 files = files_in_pth(pth)
-                goto_file_mode goto_file_mode ex_pth(fjoin(pth, files.last))
+                goto_file_mode ex_pth(fjoin(pth, files.last))
         end
 end
 
