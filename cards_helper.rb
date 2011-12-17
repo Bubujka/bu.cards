@@ -149,3 +149,11 @@ def goto_dir_mode dir
         default_dir_action dir
         do_what_i_say_in_dir dir
 end
+
+def editor
+        ENV['EDITOR'] or 'vim'
+end
+
+def doc str
+        #todo
+end

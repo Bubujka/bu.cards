@@ -1,7 +1,9 @@
+doc "Перейти на каталог выше"       
 dir_cmd :go_upper_dir do |dir|
         goto_dir_mode ex_pth(fjoin(dir, '..')) 
 end
 
+doc "Перейти к случайному файлу в текущем каталоге"
 dir_cmd :rnd_file_in_dir do |dir|
         if !files_in_pth(dir).empty?
                 goto_file_mode random_file_in(dir)
@@ -10,6 +12,7 @@ dir_cmd :rnd_file_in_dir do |dir|
         end
 end
 
+doc "Удалить файл и перейти к случайному"
 file_cmd :rm_file_and_go_rnd do |file|
         File::unlink(file)
         if !files_in_pth(dir = File.dirname(file)).empty?
@@ -19,8 +22,9 @@ file_cmd :rm_file_and_go_rnd do |file|
         end
 end
 
+doc "Отредактировать файл в редакторе"
 file_cmd :edit_file do |file|
-        system "vim #{file}"
+        system "#{editor} #{file}"
         goto_file_mode file
 end
 
@@ -28,7 +32,7 @@ dir_cmd :edit_new_file_with_next_name do |dir|
         next_num = find_next_num_in_dir dir
         pth = fjoin(dir, next_num.to_s)        
         FileUtils::touch(pth)
-        system "vim #{pth}"
+        system "#{editor} #{pth}"
         goto_file_mode pth
 end
 
@@ -38,7 +42,7 @@ dir_cmd :edit_new_file_with_user_name do |dir|
         name = gets.chomp
         pth = fjoin(dir, name)        
         FileUtils::touch(pth)
-        system "vim #{pth}"
+        system "#{editor} #{pth}"
         goto_file_mode pth
 end
 
@@ -53,7 +57,7 @@ file_cmd :copy_edit_and_return do |file|
         dir = dirname(pth)
         FileUtils::mkdir_p(dir)
         FileUtils::cp(file, pth)
-        system "vim #{pth}"
+        system "#{editor} #{pth}"
         goto_file_mode file
 end
 
@@ -83,7 +87,7 @@ file_cmd :move_edit_and_return_to_rnd do |file|
         dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
         FileUtils::mkdir_p(dest_dir)
         safe_mv(file, dest_pth)
-        system "vim #{dest_pth}"
+        system "#{editor} #{dest_pth}"
 
         rnd_file_in_dir dir
 end
@@ -183,7 +187,7 @@ global_cmd :from_clipboard_to_new_file do |pth, mode|
         pth = fjoin(dir, next_num.to_s)        
         FileUtils::touch(pth)
         system "xclip -o > #{pth}"
-        system "vim #{pth}"
+        system "#{editor} #{pth}"
         goto_file_mode pth
 end
 
