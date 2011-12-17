@@ -1,11 +1,3 @@
-
-dir_cmd :goto_dir_mode do |dir|
-        clear
-        show_current_dir_line dir
-        default_dir_action dir
-        do_what_i_say_in_dir dir
-end
-
 dir_cmd :go_upper_dir do |dir|
         goto_dir_mode ex_pth(fjoin(dir, '..')) 
 end

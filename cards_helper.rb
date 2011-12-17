@@ -142,3 +142,10 @@ def goto_file_mode file
         default_file_action file
         do_what_i_say_in_file file
 end
+
+def goto_dir_mode dir
+        clear
+        show_current_dir_line dir
+        default_dir_action dir
+        do_what_i_say_in_dir dir
+end
