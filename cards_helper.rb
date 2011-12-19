@@ -150,7 +150,7 @@ end
 def goto_dir_mode dir
         clear
         show_current_dir_line dir
-        if File.exists?(pth = fjoin(dir, '.prj'))
+        if File.exists?(pth = fjoin(dir, '.prj')) and ((prj_data = r_file(pth)) != "")
                 hr
                 puts r_file(pth)
                 hr
