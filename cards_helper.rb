@@ -143,9 +143,18 @@ def goto_file_mode file
         do_what_i_say_in_file file
 end
 
+def hr
+        puts '-----------------------------------------------------'
+end
+
 def goto_dir_mode dir
         clear
         show_current_dir_line dir
+        if File.exists?(pth = fjoin(dir, '.prj'))
+                hr
+                puts r_file(pth)
+                hr
+        end
         default_dir_action dir
         do_what_i_say_in_dir dir
 end
