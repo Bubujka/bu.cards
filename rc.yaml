@@ -29,3 +29,5 @@ bind:
   O: move_file_upsubdir
   G: git_add_clear_and_autocommit
   p: goto_prj_file
+  b: run_file_in_browser
+  B: run_content_in_browser

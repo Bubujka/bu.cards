@@ -247,3 +247,11 @@ file_cmd :hide_file do |file|
         safe_mv(file, dest_pth)
         rnd_file_in_dir dir
 end
+
+file_cmd :run_file_in_browser do |file|
+        system 'chromium-browser', file
+end
+
+file_cmd :run_content_in_browser do |file|
+        system 'chromium-browser', r_file(file)
+end
