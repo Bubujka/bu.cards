@@ -163,6 +163,10 @@ def editor
         ENV['EDITOR'] or 'vim'
 end
 
+def browser
+        ENV['BROWSER'] or 'chromium-browser'
+end
+
 def doc str
         #todo
 end

@@ -249,9 +249,9 @@ file_cmd :hide_file do |file|
 end
 
 file_cmd :run_file_in_browser do |file|
-        system 'chromium-browser', file
+        system browser, file
 end
 
 file_cmd :run_content_in_browser do |file|
-        system 'chromium-browser', r_file(file)
+        system browser, r_file(file)
 end
