@@ -1,18 +1,21 @@
 
 def show_current_dir_line dir
-        puts "= dir: #{dir} ="
+        puts "= dir: #{dir} =".green
 end
 
 def default_dir_action dir
         dirs = dirs_in_pth(dir)
-        pp_list(`for dir in \`ls -d #{dir}/*/ 2> /dev/null\`; do echo \`basename $dir\` "("\`find $dir -type f | wc -l\`")" ; done`.split("\n"), 
-                'Dirs')
+        colored_dirs = dirs.map do |v|
+                (v + " (" + `find #{dir}/#{v} -type f | wc -l`.chomp + ")")
+        end
+        t = pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}
+                     puts t
+        
         pp_list(files_in_pth(dir), "Files")
 end
 
 def do_what_i_say_in_dir dir
-        puts "\n--- DIR ---\n"
-        print "What to do:"
+        print "What to do:".green
         act = char_gets
 
         if bindings.key? act

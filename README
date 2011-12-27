@@ -50,6 +50,7 @@ default_dir: ~/gtd/unsorted
 --------------
 
 # gem install backports
+# gem install colored
 # gem install naturalsort
 
 -------------------------------------

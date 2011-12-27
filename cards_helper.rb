@@ -63,19 +63,21 @@ def dirs_in_pth pth
         dirs
 end
 
-def pp_list array, label
+def pp_list array, label, ret = false
+        r = ""
         if !array.empty?
-                puts "#{label}: "
+                r += "#{label}: \n"
                 IO.popen("pr --columns 3 -t", "r+") do |io|
                         array.each do |v|
                                 io.puts "#{v}\n"
                         end
                         io.close_write
-                        puts io.readlines
-                        puts "---------------------"
+                        r += io.readlines.to_s + "\n"
+                        r += "---------------------\n"
                 end
-
         end
+        puts(r) unless(ret)
+        r
 end
 
 def fjoin pth, v
