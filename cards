@@ -31,7 +31,7 @@ require "fileutils.rb"
 require "lib/def.rb"
 require "lib/bind.rb"
 
-require "commands.rb"
+Dir.glob(File.dirname(__FILE__) + '/commands/*', &method(:require))
 
 user_commands_file = File.expand_path "~/.bu_commands.rb"
 require user_commands_file if File.exist? user_commands_file
