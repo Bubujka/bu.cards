@@ -38,7 +38,9 @@ require user_commands_file if File.exist? user_commands_file
 
 require "rubygems"
 require "backports"
-require 'colored'
+require "colored"
+$KCODE = 'UTF8'
+require "ya2yaml"
 require "natural_sort_kernel"
 
 require "highline/system_extensions"

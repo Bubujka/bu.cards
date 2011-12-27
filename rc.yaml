@@ -15,6 +15,7 @@ bind:
   m: move_and_return_to_rnd 
   M: move_edit_and_return_to_rnd 
   q: quit 
+  "": rnd_file_in_dir 
   r: rnd_file_in_dir 
   R: goto_random_in_default_dir
   u: go_upper_dir 
@@ -32,3 +33,4 @@ bind:
   b: run_file_in_browser
   B: run_content_in_browser
   |: pipe_file
+  y: show_all_files_as_yaml

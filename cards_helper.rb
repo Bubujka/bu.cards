@@ -19,6 +19,12 @@ def r_file pth
         `cat #{pth}`.chomp
 end
 
+def w_file pth, content
+        File.open(pth, "w") do |f|
+                f.write(content)
+        end
+end
+
 def rc what
         cfg = YAML::load(r_file(File.dirname(ex_pth(__FILE__)) + "/rc.yaml"))
         if rc_exists?

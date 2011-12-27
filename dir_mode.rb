@@ -11,7 +11,7 @@ def default_dir_action dir
         t = pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}.chomp
         puts t
         
-        t = pp_list(files_in_pth(dir), "Files", true).chomp
+        puts pp_list(files_in_pth(dir), "Files", true).chomp
 end
 
 def do_what_i_say_in_dir dir

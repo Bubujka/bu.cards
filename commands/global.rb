@@ -51,8 +51,9 @@ global_cmd :prev_itm do |pth, mode|
         end
 end
 
+
+doc "Создать новый файл из содержимого буфера обмена"
 global_cmd :from_clipboard_to_new_file do |pth, mode|
-        title "Создать новый файл из содержимого буфера обмена"
         dir = pth
         dir = dirname(pth) if mode == :file
 
@@ -64,3 +65,32 @@ global_cmd :from_clipboard_to_new_file do |pth, mode|
         goto_file_mode pth
 end
 
+global_cmd :show_all_files_as_yaml do |pth, mode|
+        clear
+        dir = pth
+        dir = dirname(pth) if mode == :file
+        arr = []
+        (files = files_in_pth(dir)).each do |file|
+                arr.push({"file"=>file, "data" => r_file(fjoin(dir, file))})
+        end
+
+        FileUtils.touch(f = `mktemp --suffix=.yaml`.chomp)
+
+        w_file(f, arr.ya2yaml(:syck_compatible => true))
+
+        system("vim #{f}")
+
+        t = YAML::load(r_file(f))
+
+        new_files = t.map {|v| v["file"]}
+
+        (files - new_files).each do |v|
+                FileUtils.rm(fjoin(dir, v))
+        end
+
+        t.each do |v|
+                w_file(fjoin(dir, v["file"]), v["data"])
+        end
+
+        FileUtils.rm(f)
+end
