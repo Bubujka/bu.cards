@@ -72,7 +72,7 @@ end
 def pp_list array, label, ret = false
         r = ""
         if !array.empty?
-                r += "#{label}: \n"
+                r += "#{label.green}: \n"
                 IO.popen("pr --columns 3 -t", "r+") do |io|
                         array.each do |v|
                                 io.puts "#{v}\n"

@@ -20,7 +20,7 @@ dir_cmd :select_and_goto_dir do |dir|
                 arr.push " #{i+1}: #{dirs[i]}"
         end 
 
-        pp_list arr, "= Select dir in #{dir} ="
+        puts pp_list(arr, "= Select dir in #{dir} =", true).gsub(/[0-9]+:/){ |v| v.blue }
         t = gets.chomp
         return unless t =~ /^[0-9]+$/
         num = t.to_i - 1
