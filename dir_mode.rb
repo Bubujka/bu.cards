@@ -5,7 +5,8 @@ end
 
 def default_dir_action dir
         dirs = dirs_in_pth(dir)
-        pp_list(dirs, 'Dirs')
+        pp_list(`for dir in \`ls -d #{dir}/*/\`; do echo \`basename $dir\` "("\`find $dir -type f | wc -l\`")" ; done`.split("\n"), 
+                'Dirs')
         pp_list(files_in_pth(dir), "Files")
 end
 
