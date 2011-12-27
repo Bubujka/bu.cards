@@ -31,3 +31,4 @@ bind:
   p: goto_prj_file
   b: run_file_in_browser
   B: run_content_in_browser
+  |: pipe_file

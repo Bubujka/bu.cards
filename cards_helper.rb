@@ -169,6 +169,20 @@ def browser
         ENV['BROWSER'] or 'chromium-browser'
 end
 
+def pager
+        ENV['PAGER'] or 'less'
+end
+
 def doc str
         #todo
+end
+
+class String
+        def esc
+                return "''" if self.empty?
+                str = self.dup
+                str.gsub!(/([^A-Za-z0-9_\-.,:\/@\n])/n, "\\\\\\1")
+                str.gsub!(/\n/, "'\n'")
+                str
+        end
 end

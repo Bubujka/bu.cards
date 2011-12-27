@@ -7,7 +7,7 @@ end
 
 require "pp"
 require "yaml"
-require 'optparse'
+require "optparse"
 
 @@options = {:config => "~/.cardsrc"}
 

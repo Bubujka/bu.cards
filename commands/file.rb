@@ -108,3 +108,9 @@ end
 file_cmd :run_content_in_browser do |file|
         system browser, r_file(file)
 end
+
+file_cmd :pipe_file do |file|
+        clear
+        print "cat #{file.esc} | "
+        system "cat #{file.esc} | #{gets.chomp} | #{pager}"
+end
