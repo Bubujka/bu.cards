@@ -1,5 +1,5 @@
 def show_current_file_line file
-        puts "= file: #{file} =".green
+        puts "= file: #{file} =\n".green
 end
 
 def default_file_action file
@@ -7,7 +7,7 @@ def default_file_action file
 end
 
 def do_what_i_say_in_file file
-        print "What to do( DerucmMaN):".green
+        print "\nWhat to do( DerucmMaN):".green
         act = char_gets
         dir = dirname file
 

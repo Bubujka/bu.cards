@@ -1,6 +1,6 @@
 
 def show_current_dir_line dir
-        puts "= dir: #{dir} =".green
+        puts "= dir: #{dir} =\n".green
 end
 
 def default_dir_action dir
@@ -8,14 +8,14 @@ def default_dir_action dir
         colored_dirs = dirs.map do |v|
                 (v + " (" + `find #{dir}/#{v} -type f | wc -l`.chomp + ")")
         end
-        t = pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}
-                     puts t
+        t = pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}.chomp
+        puts t
         
-        pp_list(files_in_pth(dir), "Files")
+        t = pp_list(files_in_pth(dir), "Files", true).chomp
 end
 
 def do_what_i_say_in_dir dir
-        print "What to do:".green
+        print "\nWhat to do:".green
         act = char_gets
 
         if bindings.key? act
