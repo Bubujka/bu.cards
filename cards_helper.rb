@@ -115,6 +115,7 @@ def dmenu arr, intro = "Enter num: "
 end
 
 def safe_mv from, to
+        FileUtils.mkdir_p(dirname(to))
         system "mv --backup=t #{from} #{to}"
 end
 

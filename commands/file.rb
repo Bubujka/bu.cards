@@ -101,6 +101,22 @@ file_cmd :hide_file do |file|
         rnd_file_in_dir dir
 end
 
+file_cmd :move_to_done do |file|
+        dir = dirname(file)
+        name = basename(file)
+        dest_pth = fjoin(dir, ".done/#{name}")
+        safe_mv(file, dest_pth)
+        rnd_file_in_dir dir
+end
+
+file_cmd :move_to_later do |file|
+        dir = dirname(file)
+        name = basename(file)
+        dest_pth = fjoin(dir, ".later/#{name}")
+        safe_mv(file, dest_pth)
+        rnd_file_in_dir dir
+end
+
 file_cmd :run_file_in_browser do |file|
         system browser, file
 end
