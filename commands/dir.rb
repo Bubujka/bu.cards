@@ -5,7 +5,12 @@ dir_cmd :git_add_clear_and_autocommit do |dir|
 end
 
 dir_cmd :goto_prj_file do |dir|
-        goto_file_mode ex_pth(fjoin(dir, '.prj'))
+        file = ex_pth(fjoin(dir, '.prj'))
+        if(File.exists? file)
+                goto_file_mode file
+        else
+                edit_file file
+        end
 end
 
 dir_cmd :select_and_goto_dir do |dir|

@@ -3,7 +3,15 @@ def show_current_file_line file
 end
 
 def default_file_action file
-        puts r_file file
+        if(File.exists?(file))
+                if(File.size(file) == 0)
+                        puts "File empty".red
+                else
+                        puts r_file file
+                end
+        else
+                puts "File not exists".red
+        end
 end
 
 def do_what_i_say_in_file file

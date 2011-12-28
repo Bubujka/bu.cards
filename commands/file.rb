@@ -56,7 +56,7 @@ end
 
 doc "Отредактировать файл в редакторе"
 file_cmd :edit_file do |file|
-        system "#{editor} #{file}"
+        system editor, file
         goto_file_mode file
 end
 
