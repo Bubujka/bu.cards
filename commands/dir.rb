@@ -53,11 +53,24 @@ dir_cmd :create_dir_with_user_name do |dir|
 end
 
 
+doc "Создаёт пустой файл и открывает на нём редактор"
 dir_cmd :edit_new_file_with_next_name do |dir|
         next_num = find_next_num_in_dir dir
         pth = fjoin(dir, next_num.to_s)        
         FileUtils::touch(pth)
         system "#{editor} #{pth}"
+        goto_file_mode pth
+end
+
+doc "Создаёт пустой файл и открывает на нём редактор"
+dir_cmd :new_file_with_user_input_with_next_name do |dir|
+        clear
+        print "Write: "
+        txt = gets.chomp
+        return unless txt
+        next_num = find_next_num_in_dir dir
+        pth = fjoin(dir, next_num.to_s)        
+        w_file pth, txt
         goto_file_mode pth
 end
 
