@@ -130,3 +130,13 @@ file_cmd :pipe_file do |file|
         print "cat #{file.esc} | "
         system "cat #{file.esc} | #{gets.chomp} | #{pager}"
 end
+
+file_cmd :move_to_waiting do |file|
+        dir = dirname(file)
+        name = basename(file)
+        dest_pth = fjoin(dir, ".waiting/#{name}")
+        safe_mv(file, dest_pth)
+        rnd_file_in_dir dir
+end
+
+

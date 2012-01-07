@@ -35,3 +35,4 @@ bind:
   B: run_content_in_browser
   |: pipe_file
   y: show_all_files_as_yaml
+  w: move_to_waiting
