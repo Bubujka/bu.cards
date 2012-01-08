@@ -213,7 +213,7 @@ def browser
 end
 
 def pager
-        ENV['PAGER'] or 'less'
+        ENV['PAGER'] or 'less -R'
 end
 
 def doc str

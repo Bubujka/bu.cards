@@ -94,8 +94,23 @@ dir_cmd :rnd_file_in_dir do |dir|
         end
 end
 
+doc "Выполнить shell команду и посмотреть вывод"
 dir_cmd :shell_command do |dir|
         clear
         print "$ ".green
         system "cd #{dir.esc} ; #{gets.chomp} | #{pager}"
+end
+
+doc "Поиск слова по файлам"
+dir_cmd :search_word_in_dir do |dir|
+        clear
+        print "Search word: ".green
+        system "cd #{dir.esc} ; grep --color=always -ni #{gets.chomp.esc} * | #{pager}"
+end
+
+doc "Поиск слова по файлам рекурсивно"
+dir_cmd :search_word_in_dir_r do |dir|
+        clear
+        print "Search word recursive: ".green
+        system "cd #{dir.esc} ; grep --color=always -nri #{gets.chomp.esc} * | #{pager}"
 end

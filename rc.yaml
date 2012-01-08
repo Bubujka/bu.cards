@@ -33,6 +33,8 @@ bind:
   b: run_file_in_browser
   l: move_to_later
   B: run_content_in_browser
+  s: search_word_in_dir
+  S: search_word_in_dir_r
   |: pipe_file
   '!': shell_command
   y: show_all_files_as_yaml
