@@ -1,0 +1,16 @@
+#!/bin/bash
+# Даёт следующий номер файла в каталоге 
+if [ -n "$1" ]
+then
+        cd $1
+fi
+
+LAST=`ls -v | grep '^[0-9]*$' | tail -1`
+
+if [ -n "$LAST" ]
+then
+        echo "$LAST + 1" | bc
+else
+        echo 1
+fi
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~/.db/$1
+echo ' ' | dmenu_wrapper "$2" >> `next-n-in-dir`

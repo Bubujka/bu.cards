@@ -1,0 +1,2 @@
+#!/bin/bash
+xterm -e " sleep 0.1; ~/.db/bin/cards --config=~/.buc-$1rc "
