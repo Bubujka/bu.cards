@@ -9,6 +9,8 @@ require "pp"
 require "yaml"
 require "optparse"
 
+require "stringio"
+
 @@options = {:config => "~/.cardsrc"}
 
 OptionParser.new do |opts|

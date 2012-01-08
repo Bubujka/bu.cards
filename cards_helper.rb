@@ -229,3 +229,13 @@ class String
                 str
         end
 end
+
+def ob 
+        buffer = StringIO.new
+        old_stdout = $stdout 
+        $stdout = buffer
+        yield
+        $stdout = old_stdout
+        buffer.rewind
+        buffer.read
+end
