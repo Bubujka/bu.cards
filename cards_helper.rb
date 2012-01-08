@@ -103,9 +103,11 @@ end
 
 def get_char
         # return char from input or C-? C-A-?. 
+        dbg(`stty`)
         key = ""
         begin
                   system("stty raw -echo")
+                  dbg(`stty`)
                   f = STDIN.getc
                   if (1..26) === f
                           key = "C-" + (f + 96).chr
@@ -124,9 +126,14 @@ def get_char
                           end
                   end
         ensure
-                  system("stty -raw echo")
+                  system("stty -raw -brkint -ignpar -istrip iutf8 echo")
         end
+        dbg(`stty`)
         key
+end
+
+def dbg wtf
+       open(ex_pth('~/.bucardslog'), 'a') { |f| f.puts ("\n" + wtf)}
 end
 
 
