@@ -1,4 +1,3 @@
-
 global_cmd :quit do 
         puts " " 
         exit

@@ -16,11 +16,10 @@ end
 
 def do_what_i_say_in_file file
         print "\nWhat to do( DerucmMaN):".green
-        act = char_gets
+
         dir = dirname file
 
-        if bindings.key? act
-                cmd = bindings[act]
+        if cmd = get_cmd_from_user
                 if is_global_cmd cmd
                         send cmd, file, :file
                 end
@@ -35,5 +34,3 @@ def do_what_i_say_in_file file
         end
         goto_file_mode file
 end
-
-

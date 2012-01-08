@@ -16,11 +16,8 @@ end
 
 def do_what_i_say_in_dir dir
         print "\nWhat to do:".green
-        act = char_gets
 
-        if bindings.key? act
-                cmd = bindings[act]
-
+        if cmd = get_cmd_from_user
                 if is_dir_cmd cmd 
                         send cmd, dir
                 end
@@ -31,5 +28,3 @@ def do_what_i_say_in_dir dir
         end
         goto_dir_mode dir
 end
-
-         

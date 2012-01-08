@@ -36,4 +36,9 @@ bind:
   |: pipe_file
   y: show_all_files_as_yaml
   w: move_to_waiting
-
+  g: 
+    name: Git command
+    a: git_add
+    s: git_status
+    l: git_log
+    c: git_commit

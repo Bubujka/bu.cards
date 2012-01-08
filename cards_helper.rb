@@ -133,7 +133,7 @@ def get_char
 end
 
 def dbg wtf
-       open(ex_pth('~/.bucardslog'), 'a') { |f| f.puts ("\n" + wtf)}
+       open(ex_pth('~/.bucardslog'), 'a') { |f| f.puts ("\n[#{Time.now}]#{wtf}")}
 end
 
 
