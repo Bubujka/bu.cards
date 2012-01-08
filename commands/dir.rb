@@ -4,13 +4,9 @@ dir_cmd :git_add_clear_and_autocommit do |dir|
         char_gets
 end
 
+doc "Начать редактировать .prj файл"
 dir_cmd :goto_prj_file do |dir|
-        file = ex_pth(fjoin(dir, '.prj'))
-        if(File.exists? file)
-                goto_file_mode file
-        else
-                edit_file file
-        end
+        edit_file ex_pth(fjoin(dir, '.prj'))
 end
 
 dir_cmd :select_and_goto_dir do |dir|
