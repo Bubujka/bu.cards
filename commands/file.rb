@@ -104,7 +104,7 @@ end
 file_cmd :move_to_done do |file|
         dir = dirname(file)
         name = basename(file)
-        dest_pth = fjoin(dir, ".done/#{name}")
+        dest_pth = fjoin(dir, "done/#{name}")
         safe_mv(file, dest_pth)
         rnd_file_in_dir dir
 end
@@ -112,7 +112,7 @@ end
 file_cmd :move_to_later do |file|
         dir = dirname(file)
         name = basename(file)
-        dest_pth = fjoin(dir, ".later/#{name}")
+        dest_pth = fjoin(dir, "later/#{name}")
         safe_mv(file, dest_pth)
         rnd_file_in_dir dir
 end
@@ -134,7 +134,7 @@ end
 file_cmd :move_to_waiting do |file|
         dir = dirname(file)
         name = basename(file)
-        dest_pth = fjoin(dir, ".waiting/#{name}")
+        dest_pth = fjoin(dir, "waiting/#{name}")
         safe_mv(file, dest_pth)
         rnd_file_in_dir dir
 end
