@@ -34,6 +34,7 @@ bind:
   l: move_to_later
   B: run_content_in_browser
   |: pipe_file
+  '!': shell_command
   y: show_all_files_as_yaml
   w: move_to_waiting
   g: 

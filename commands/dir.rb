@@ -94,3 +94,8 @@ dir_cmd :rnd_file_in_dir do |dir|
         end
 end
 
+dir_cmd :shell_command do |dir|
+        clear
+        print "$ ".green
+        system "cd #{dir.esc} ; #{gets.chomp} | #{pager}"
+end
