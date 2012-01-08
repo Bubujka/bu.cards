@@ -45,3 +45,8 @@ bind:
     s: git_status
     l: git_log
     c: git_commit
+    p: git_push
+    P: git_pull
+    C: git_clear
+    g: git_add_clear_commit_push 
+
