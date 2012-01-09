@@ -11,18 +11,6 @@ require "optparse"
 
 require "stringio"
 
-@@options = {:config => "~/.cardsrc"}
-
-OptionParser.new do |opts|
-  opts.on( '-h', '--help', 'Display this screen' ) do
-    puts opts
-    exit
-  end
-
-  opts.on( '-c', '--config FILE', "Config file" ) do |f|
-    @@options[:config] = f 
-  end
-end.parse!
 
 require "lib/hash.rb"
 
@@ -48,6 +36,24 @@ require "natural_sort_kernel"
 require "highline/system_extensions"
 include HighLine::SystemExtensions
 
+@@options = {:config => "~/.cardsrc"}
+
+OptionParser.new do |opts|
+        opts.on( '-h', '--help', 'Display this screen' ) do
+                puts opts
+                exit
+        end
+
+        opts.on( '-c', '--config FILE', "Config file" ) do |f|
+                @@options[:config] = f 
+        end
+
+        opts.on( '-w', '--without-clear', "Disable clear function" ) do |f|
+                def clear; end
+        end
+end.parse!
+
+
 def main 
         trap("INT") do
                 exit
@@ -58,6 +64,7 @@ def main
                 rc("default_dir").ex
         end
 
+        FileUtils.mkdir_p dir unless File.exists? dir
         goto_dir_mode dir
 end
 

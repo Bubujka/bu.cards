@@ -1,4 +1,4 @@
-default_dir: ~/.db/cards
+default_dir: ~/gtd
 hide_empty_dirs: true
 hide_dotted_dirs: true
 hide_dotted_files: true

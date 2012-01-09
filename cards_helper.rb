@@ -130,7 +130,9 @@ def get_char
 end
 
 def dbg wtf
-       open('~/.bucardslog'.ex, 'a') { |f| f.puts ("\n[#{Time.now}]#{wtf}")}
+        open('~/.bucardslog'.ex, 'a') do |f|
+                f.puts("\n[#{Time.now}]#{wtf}")
+        end
 end
 
 
