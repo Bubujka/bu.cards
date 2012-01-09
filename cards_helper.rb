@@ -4,16 +4,13 @@ def have_args?
 end
 
 def config_file
-        ex_pth @@options[:config]
+        @@options[:config].ex
 end
 
 def rc_exists?
         File.exists?(config_file)
 end
 
-def ex_pth pth
-        File.expand_path(pth)
-end
 
 def r_file pth
         `cat #{pth}`.chomp
@@ -26,7 +23,7 @@ def w_file pth, content
 end
 
 def rc what
-        cfg = YAML::load(r_file(File.dirname(ex_pth(__FILE__)) + "/rc.yaml"))
+        cfg = YAML::load(r_file(File.dirname(__FILE__.ex) + "/rc.yaml"))
         if rc_exists?
                 cfg.deep_merge!(YAML::load(r_file(config_file)))
         end
@@ -133,7 +130,7 @@ def get_char
 end
 
 def dbg wtf
-       open(ex_pth('~/.bucardslog'), 'a') { |f| f.puts ("\n[#{Time.now}]#{wtf}")}
+       open('~/.bucardslog'.ex, 'a') { |f| f.puts ("\n[#{Time.now}]#{wtf}")}
 end
 
 
@@ -227,6 +224,10 @@ class String
                 str.gsub!(/([^A-Za-z0-9_\-.,:\/@\n])/n, "\\\\\\1")
                 str.gsub!(/\n/, "'\n'")
                 str
+        end
+
+        def ex
+                File.expand_path(self)
         end
 end
 

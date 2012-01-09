@@ -6,7 +6,7 @@ end
 
 doc "Начать редактировать .prj файл"
 dir_cmd :goto_prj_file do |dir|
-        edit_file ex_pth(fjoin(dir, '.prj'))
+        edit_file fjoin(dir, '.prj').ex
 end
 
 dir_cmd :select_and_goto_dir do |dir|
@@ -82,7 +82,7 @@ end
 
 doc "Перейти на каталог выше"       
 dir_cmd :go_upper_dir do |dir|
-        goto_dir_mode ex_pth(fjoin(dir, '..')) 
+        goto_dir_mode fjoin(dir, '..').ex 
 end
 
 doc "Перейти к случайному файлу в текущем каталоге"

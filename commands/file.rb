@@ -5,7 +5,7 @@ file_cmd :copy_edit_and_return do |file|
         print "Enter dest directory: "
         name = gets.chomp
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
-        pth = ex_pth(fjoin(dirname(file), name))
+        pth = fjoin(dirname(file), name).ex
         dir = dirname(pth)
         FileUtils::mkdir_p(dir)
         FileUtils::cp(file, pth)
@@ -20,7 +20,7 @@ file_cmd :move_and_return_to_rnd do |file|
         print "Enter dest directory: "
         name = gets.chomp
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
-        dest_dir = ex_pth(fjoin(dir, name))
+        dest_dir = fjoin(dir, name).ex
         dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
         FileUtils::mkdir_p(dest_dir)
         safe_mv(file, dest_pth)
@@ -35,7 +35,7 @@ file_cmd :move_edit_and_return_to_rnd do |file|
         print "Enter dest directory: "
         name = gets.chomp
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
-        dest_dir = ex_pth(fjoin(dir, name))
+        dest_dir = fjoin(dir, name).ex
         dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
         FileUtils::mkdir_p(dest_dir)
         safe_mv(file, dest_pth)
@@ -81,7 +81,7 @@ end
 
 file_cmd :move_file_upsubdir do |file|
         title "Перенос файла в соседний-родительский каталог"
-        dir = ex_pth(fjoin(dirname(file), '..'))
+        dir = fjoin(dirname(file), '..').ex
         clear
         if dest = dmenu(dirs_in_pth(dir))
                 safe_mv(file, fjoin(dir, dest))

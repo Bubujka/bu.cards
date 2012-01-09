@@ -53,9 +53,9 @@ def main
                 exit
         end
         dir = if have_args? 
-                ex_pth ARGV[0]
+                ARGV[0].ex
         else
-                ex_pth(rc("default_dir")) 
+                rc("default_dir").ex
         end
 
         goto_dir_mode dir

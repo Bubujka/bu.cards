@@ -9,7 +9,7 @@ global_cmd :goto_random_in_default_dir do
 end
 
 global_cmd :go_home do
-        goto_dir_mode ex_pth(rc("default_dir"))
+        goto_dir_mode rc("default_dir").ex
 end
 
 global_cmd :show_help do |pth, mode|
@@ -25,12 +25,12 @@ global_cmd :next_itm do |pth, mode|
                 filename = basename(pth)
                 files.each_cons(2) do |element, next_element|
                         if(element == filename)
-                                goto_file_mode ex_pth(fjoin(dir, next_element))
+                                goto_file_mode fjoin(dir, next_element).ex
                         end
                 end
         elsif mode == :dir
                 files = files_in_pth(pth)
-                goto_file_mode ex_pth(fjoin(pth, files.first))
+                goto_file_mode fjoin(pth, files.first).ex
         end
 end
 
@@ -41,12 +41,12 @@ global_cmd :prev_itm do |pth, mode|
                 filename = basename(pth)
                 files.each_cons(2) do |element, next_element|
                         if(next_element == filename)
-                                goto_file_mode ex_pth(fjoin(dir, element))
+                                goto_file_mode fjoin(dir, element).ex
                         end
                 end
         elsif mode == :dir
                 files = files_in_pth(pth)
-                goto_file_mode ex_pth(fjoin(pth, files.last))
+                goto_file_mode fjoin(pth, files.last).ex
         end
 end
 
