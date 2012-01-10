@@ -7,7 +7,12 @@ def default_file_action file
                 if(File.size(file) == 0)
                         puts "File empty".red
                 else
-                        puts r_file file
+                        ext = File.extname(file) 
+                        if(['.htm', '.html'].include? ext)
+                                puts `w3m #{file.esc} | cat`.chomp
+                        else
+                                puts r_file file
+                        end
                 end
         else
                 puts "File not exists".red
