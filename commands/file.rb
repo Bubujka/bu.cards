@@ -19,6 +19,7 @@ file_cmd :move_and_return_to_rnd do |file|
         puts "Move ->  Return-to-random"
         print "Enter dest directory: "
         name = gets.chomp
+        return if name.empty?
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
         dest_dir = fjoin(dir, name).ex
         dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
@@ -34,6 +35,7 @@ file_cmd :move_edit_and_return_to_rnd do |file|
         puts "Move -> Edit -> Return-to-random"
         print "Enter dest directory: "
         name = gets.chomp
+        return if name.empty?
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
         dest_dir = fjoin(dir, name).ex
         dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
