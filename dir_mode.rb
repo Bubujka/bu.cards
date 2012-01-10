@@ -16,6 +16,7 @@ end
 
 def do_what_i_say_in_dir dir
         nl
+        print_flash_messages
         print "What to do:".green
 
         if cmd = get_cmd_from_user

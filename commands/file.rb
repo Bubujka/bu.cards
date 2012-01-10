@@ -48,6 +48,7 @@ end
 
 doc "Удалить файл и перейти к случайному"
 file_cmd :rm_file_and_go_rnd do |file|
+        flash_s "Deleted: #{file.green}"
         File::unlink(file)
         if !files_in_pth(dir = File.dirname(file)).empty?
                 goto_file_mode random_file_in(dir)
@@ -72,7 +73,8 @@ file_cmd :move_file_subdir do |file|
         dir = dirname(file)
         clear
         if dest = dmenu(dirs_in_pth(dir))
-                safe_mv(file, fjoin(dir, dest))
+                safe_mv(file, t = fjoin(dir, dest))
+                flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dir)
                         goto_file_mode rnd
                 else
@@ -86,7 +88,8 @@ file_cmd :move_file_upsubdir do |file|
         dir = fjoin(dirname(file), '..').ex
         clear
         if dest = dmenu(dirs_in_pth(dir))
-                safe_mv(file, fjoin(dir, dest))
+                safe_mv(file, t = fjoin(dir, dest))
+                flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dirname(file))
                         goto_file_mode rnd
                 else
