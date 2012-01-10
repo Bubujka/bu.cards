@@ -159,3 +159,7 @@ file_cmd :replace_file_with_user_input do |file|
         goto_file_mode file
 end
 
+doc "Скопировать файл в буфер обмена"
+file_cmd :file_to_clipboard do |file|
+        system "cat #{file.esc} | xclip"
+end
