@@ -140,3 +140,17 @@ file_cmd :move_to_waiting do |file|
 end
 
 
+doc "Запрашивает строку и заменяет её файл"
+file_cmd :replace_file_with_user_input do |file|
+        clear
+        puts "Old file content (".green + file.white + "):".green
+        nl
+        puts `cat #{file.esc}`.chomp
+        nl
+        print "Write (enter for abort): ".green
+        txt = gets.chomp
+        return if txt.empty?
+        w_file file, txt
+        goto_file_mode file
+end
+

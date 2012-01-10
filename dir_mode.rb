@@ -15,7 +15,8 @@ def default_dir_action dir
 end
 
 def do_what_i_say_in_dir dir
-        print "\nWhat to do:".green
+        nl
+        print "What to do:".green
 
         if cmd = get_cmd_from_user
                 if is_dir_cmd cmd 

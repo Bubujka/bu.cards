@@ -61,9 +61,9 @@ end
 doc "Создаёт пустой файл и открывает на нём редактор"
 dir_cmd :new_file_with_user_input_with_next_name do |dir|
         clear
-        print "Write: "
+        print "Write: ".green
         txt = gets.chomp
-        return unless txt
+        return if txt.empty?
         next_num = find_next_num_in_dir dir
         pth = fjoin(dir, next_num.to_s)        
         w_file pth, txt
@@ -72,7 +72,7 @@ end
 
 dir_cmd :edit_new_file_with_user_name do |dir|
         clear
-        print "Enter file name: "
+        print "Enter file name: ".green
         name = gets.chomp
         pth = fjoin(dir, name)        
         FileUtils::touch(pth)

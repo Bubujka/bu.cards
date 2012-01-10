@@ -10,7 +10,8 @@ bind:
   C: copy_edit_and_return 
   D: rm_file_and_go_rnd 
   d: select_and_goto_dir 
-  e: edit_file 
+  E: edit_file 
+  e: replace_file_with_user_input 
   f: select_and_goto_file 
   n: create_dir_with_user_name 
   m: move_and_return_to_rnd 

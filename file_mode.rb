@@ -15,7 +15,8 @@ def default_file_action file
 end
 
 def do_what_i_say_in_file file
-        print "\nWhat to do( DerucmMaN):".green
+        nl
+        print "What to do:".green
 
         dir = dirname file
 

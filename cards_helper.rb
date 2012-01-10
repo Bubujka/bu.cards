@@ -188,7 +188,11 @@ def goto_file_mode file
 end
 
 def hr
-        puts '-----------------------------------------------------'
+        puts '-----------------------------------------------------'.green
+end
+
+def nl
+        puts
 end
 
 def goto_dir_mode dir
