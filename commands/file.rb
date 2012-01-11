@@ -106,10 +106,10 @@ file_cmd :hide_file do |file|
         rnd_file_in_dir dir
 end
 
-def move_to file, dir
+def move_to file, ddir
         dir = dirname(file)
         name = basename(file)
-        dest_pth = fjoin(dir, "#{dir}/#{name}")
+        dest_pth = fjoin(dir, "#{ddir}/#{name}")
         safe_mv(file, dest_pth)
         rnd_file_in_dir dir
 end

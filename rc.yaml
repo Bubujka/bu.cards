@@ -35,6 +35,7 @@ bind:
   p: goto_prj_file
   b: run_file_in_browser
   l: move_to_later
+  L: unlater_all_files
   w: move_to_waiting
   c: move_to_complete
   B: run_content_in_browser

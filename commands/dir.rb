@@ -114,3 +114,10 @@ dir_cmd :search_word_in_dir_r do |dir|
         print "Search word recursive: ".green
         system "cd #{dir.esc} ; grep --color=always -nri #{gets.chomp.esc} * | #{pager}"
 end
+
+doc "Переносит все файлы из папки later - в текущий каталог"
+dir_cmd :unlater_all_files do |dir|
+        `find #{fjoin(dir, 'later').esc}/* -maxdepth 0 -type f`.chomp.split("\n").each do |v|
+                safe_mv(v, dir)
+        end
+end
