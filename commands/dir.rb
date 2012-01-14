@@ -17,15 +17,8 @@ dir_cmd :select_and_goto_dir do |dir|
         num = 0
         arr = []
 
-        dirs.each_index do |i|
-                arr.push " #{i+1}: #{dirs[i]}"
-        end 
-
-        puts pp_list(arr, "= Select dir in #{dir} =", true).gsub(/[0-9]+:/){ |v| v.blue }
-        t = gets.chomp
-        return unless t =~ /^[0-9]+$/
-        num = t.to_i - 1
-        goto_dir_mode fjoin(dir, dirs[num])
+        return unless (dest = dmenu(dirs, "= Select dir in #{dir} ="))
+        goto_dir_mode fjoin(dir, dest)
 end
 
 dir_cmd :select_and_goto_file do |dir|

@@ -142,11 +142,19 @@ def char_gets title = ""
 end
 
 def dmenu arr, intro = "Enter num: "
-        pp_list arr.each_index.map{|k| "#{k + 1} - #{arr[k]}"}, intro
-        t = gets.chomp
-        return unless t =~ /^[0-9]+$/
-        t = t.to_i - 1
-        arr[t]
+        keys = %w[ 1 2 3 4 5 6 7 8 9 0 a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ]
+        if(arr.size > keys.size)
+                pp_list arr.each_index.map{|k| "#{k + 1} - #{arr[k]}"}, intro
+                t = gets.chomp
+                return unless t =~ /^[0-9]+$/
+                t = t.to_i - 1
+                arr[t]
+        else
+                pp_list arr.each_index.map{|k| "#{keys[k]} - #{arr[k]}"}, intro
+                t = char_gets
+                return unless keys.include? t
+                arr[keys.find_index t]
+        end
 end
 
 def safe_mv from, to
