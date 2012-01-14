@@ -1,0 +1,10 @@
+#!/bin/bash
+find * -maxdepth 0 \( ! -regex '\.*' \) -type f -exec mv "{}" "_{}" \;
+IFS=$'\n'
+i=1
+for file in `find * -maxdepth 0 \( ! -regex '\.*' \) -type f`
+do
+        mv "$file" $i
+        i=$[i+1]
+done
+

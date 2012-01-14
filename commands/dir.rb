@@ -121,3 +121,8 @@ dir_cmd :unlater_all_files do |dir|
                 safe_mv(v, dir)
         end
 end
+
+doc "Переименовывает все файлы в каталоге по номерам"
+dir_cmd :renumerate_files do |dir|
+        system "cd #{dir.esc}; renumerate"
+end
