@@ -11,13 +11,14 @@ def default_dir_action dir
         t = pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}.chomp
         puts t
         
-        puts pp_list(files_in_pth(dir), "Files", true).chomp
+        if t = pp_list(files_in_pth(dir), "Files", true).chomp
+                puts t
+        end
 end
 
 def do_what_i_say_in_dir dir
-        nl
-        print_flash_messages
         print "What to do:".green
+        print_flash_messages
 
         if cmd = get_cmd_from_user
                 if is_dir_cmd cmd 

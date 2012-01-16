@@ -1,6 +1,8 @@
 @flash_messages = {:error => [], :success => []}
 def print_flash_messages 
         unless @flash_messages[:error].empty? and @flash_messages[:success].empty?
+                nl
+                nl
                 if @flash_messages[:error]
                         @flash_messages[:error].each do |v|
                                 puts " ".white_on_red + " " + v

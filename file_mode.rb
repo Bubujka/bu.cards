@@ -21,8 +21,8 @@ end
 
 def do_what_i_say_in_file file
         nl
-        print_flash_messages
         print "What to do:".green
+        print_flash_messages
 
         dir = dirname file
 
