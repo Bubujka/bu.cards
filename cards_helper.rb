@@ -227,8 +227,15 @@ def pager
         ENV['PAGER'] or 'less -R'
 end
 
+@doc = {}
+@doc_str = nil
 def doc str
-        #todo
+        @doc_str = str
+end
+def get_doc
+        t = @doc_str
+        @doc_str = nil
+        t
 end
 
 class String

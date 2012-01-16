@@ -14,8 +14,31 @@ end
 
 global_cmd :show_help do |pth, mode|
         clear
-        # show doc here
-        char_gets
+        str = ob do
+                bind = rc('bind')
+                bind.each_key do |k|
+                        print "\"#{k}\""
+                        if (v = bind[k]).class == String
+                                puts " -  #{bind[k]}"
+                                if (v = @doc[bind[k].to_sym])
+                                        puts "   #{v}"
+                                end
+                        elsif v.class == Hash
+                                puts " -  #{v['name']}" if v['name'] 
+                                v.each_key do |kk|
+                                        if kk == 'name'
+                                                next
+                                        end
+                                        print "   \"#{kk}\""
+                                        puts " -  #{v[kk]}"
+                                        if (t = @doc[v[kk].to_sym])
+                                                puts "      #{t}"
+                                        end
+                                end
+                        end
+                end
+        end
+        system "echo #{str.esc} | #{pager}"
 end
 
 global_cmd :next_itm do |pth, mode|
