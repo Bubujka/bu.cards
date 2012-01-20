@@ -13,6 +13,7 @@ bind:
   E: edit_file 
   e: replace_file_with_user_input 
   f: select_and_goto_file 
+  F: fetch_notice 
   n: create_dir_with_user_name 
   m: move_and_return_to_rnd 
   M: move_edit_and_return_to_rnd 

@@ -11,7 +11,7 @@ def default_file_action file
                         if(['.htm', '.html'].include? ext)
                                 puts `w3m #{file.esc} | cat`.chomp
                         else
-                                puts r_file file
+                                puts `cat #{file.esc} 2> /dev/null | head -20`
                         end
                 end
         else
@@ -21,8 +21,8 @@ end
 
 def do_what_i_say_in_file file
         nl
-        print "What to do:".green
         print_flash_messages
+        print "What to do:".green
 
         dir = dirname file
 

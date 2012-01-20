@@ -119,3 +119,8 @@ doc "Переименовывает все файлы в каталоге по �
 dir_cmd :renumerate_files do |dir|
         system "cd #{dir.esc}; renumerate"
 end
+
+dir_cmd :fetch_notice do |dir|
+        system "cd #{dir.esc}; fetch-notice"
+end
+
