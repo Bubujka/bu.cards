@@ -18,7 +18,7 @@ bind:
   m: move_and_return_to_rnd 
   M: move_edit_and_return_to_rnd 
   q: quit 
-  "": rnd_file_in_dir 
+  "C-m": default_action 
   r: rnd_file_in_dir 
   R: goto_random_in_default_dir
   C-r: renumerate_files
@@ -42,6 +42,7 @@ bind:
   c: move_to_complete
   B: run_content_in_browser
   s: search_word_in_dir
+  v: play_sound_file
   S: search_word_in_dir_r
   |: pipe_file
   '!': shell_command

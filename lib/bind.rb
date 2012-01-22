@@ -5,7 +5,6 @@ end
 
 def get_cmd_from_user
         act = char_gets
-        
         if bindings.key? act
                 t = bindings[act]
                 if t.class == Hash

@@ -166,3 +166,26 @@ doc "Скопировать файл в буфер обмена"
 file_cmd :file_to_clipboard do |file|
         system "cat #{file.esc} | xclip"
 end
+
+file_cmd :play_sound_file do |file|
+        IO.popen("mplayer #{file.esc} -loop 0 2> /dev/null ", "r+") do |io|
+                clear
+                puts "Playing  #{file}"
+                puts "Commands: "
+                puts "  space: pause"
+                puts "  r: restart"
+                puts "  q: abort"
+                while t = get_char
+                        if t == "q"
+                                io.close
+                                goto_file_mode file
+                        end
+                        if t == " "
+                                io.print " " # pause
+                        end
+                        if t == "r"
+                                io.print(27.chr + 91.chr + 54.chr + 126.chr) # restart
+                        end
+                end     
+        end
+end

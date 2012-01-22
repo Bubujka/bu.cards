@@ -116,3 +116,13 @@ global_cmd :show_all_files_as_yaml do |pth, mode|
 
         FileUtils.rm(f)
 end
+
+global_cmd :default_action do |pth, mode|
+        if mode == :file
+                ext = File.extname(pth) 
+                if(['.mp3', '.MP3'].include? ext)
+                        play_sound_file pth
+                end
+        end
+end
+

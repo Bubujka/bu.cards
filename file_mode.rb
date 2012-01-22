@@ -10,6 +10,8 @@ def default_file_action file
                         ext = File.extname(file) 
                         if(['.htm', '.html'].include? ext)
                                 puts `w3m #{file.esc} | cat`.chomp
+                        elsif(['.mp3', '.MP3'].include? ext)
+                                puts "Sound file".blue
                         else
                                 puts `cat #{file.esc} 2> /dev/null | head -20`
                         end
