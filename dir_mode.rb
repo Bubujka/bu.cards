@@ -6,7 +6,8 @@ end
 def default_dir_action dir
         dirs = dirs_in_pth(dir)
         colored_dirs = dirs.map do |v|
-                (v + " (" + `find #{dir}/#{v} -type f | wc -l`.chomp + ")")
+                pth = "#{dir}/#{v}"
+                (v + " (" + `find #{pth.esc} -type f | wc -l`.chomp + ")")
         end
         t = pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}.chomp
         puts t
