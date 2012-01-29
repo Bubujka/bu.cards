@@ -4,12 +4,23 @@ dir_cmd :git_add_clear_and_autocommit do |dir|
         char_gets
 end
 
-doc "Начать редактировать .dairy файл"
+doc <<EOF
+Начать редактировать .dairy файл
+
+В этом файле надо хранить журнал проектных решений - 
+что было принято и почему
+EOF
 dir_cmd :goto_dairy_file do |dir|
         edit_file fjoin(dir, '.dairy').ex
 end
 
-doc "Начать редактировать .prj файл"
+doc <<EOF
+Начать редактировать .prj файл
+
+Содержимое этого файла всегда показывается в просмотре каталога.
+В этом файле надо держать цель каталога и заметки, что важно держать
+перед глазами
+EOF
 dir_cmd :goto_prj_file do |dir|
         edit_file fjoin(dir, '.prj').ex
 end

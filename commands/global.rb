@@ -17,22 +17,22 @@ global_cmd :show_help do |pth, mode|
         str = ob do
                 bind = rc('bind')
                 bind.each_key do |k|
-                        print "\"#{k}\""
+                        print "\"#{k.green}\""
                         if (v = bind[k]).class == String
-                                puts " -  #{bind[k]}"
+                                puts " - #{bind[k].blue}"
                                 if (v = @doc[bind[k].to_sym])
-                                        puts "   #{v}"
+                                        puts ident_text("   ", v)
                                 end
                         elsif v.class == Hash
-                                puts " -  #{v['name']}" if v['name'] 
+                                puts " - #{v['name']}.blue" if v['name'] 
                                 v.each_key do |kk|
                                         if kk == 'name'
                                                 next
                                         end
-                                        print "   \"#{kk}\""
-                                        puts " -  #{v[kk]}"
+                                        print "   \"#{kk.green}\""
+                                        puts " -  #{v[kk].blue}"
                                         if (t = @doc[v[kk].to_sym])
-                                                puts "      #{t}"
+                                                puts ident_text("      ", t)
                                         end
                                 end
                         end

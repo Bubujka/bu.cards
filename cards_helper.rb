@@ -227,6 +227,10 @@ def pager
         ENV['PAGER'] or 'less -R'
 end
 
+def ident_text prefix, text
+        prefix  + text.split("\n").join("\n#{prefix}").chomp
+end
+
 @doc = {}
 @doc_str = nil
 def doc str
