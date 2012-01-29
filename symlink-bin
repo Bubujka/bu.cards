@@ -1,0 +1,9 @@
+#!/bin/bash
+# Сделать симлинки вспомогательных скриптов в каталог, который виден в $PATH
+DEST="$1"
+for file in bin/*; 
+do
+        echo "$PWD/$file"
+        ln -s "$PWD/$file" "$1"
+done
+
