@@ -1,5 +1,6 @@
 def show_current_file_line file
-        puts "= file: #{file} =\n".green
+        
+        puts "= file: #{(file.dirname.basename + '/' + file.basename).green} - #{file.cdate.blue} =\n"
 end
 
 def default_file_action file
@@ -11,7 +12,7 @@ def default_file_action file
                         if(['.htm', '.html'].include? ext)
                                 puts `w3m #{file.esc} | cat`.chomp
                         elsif(['.mp3', '.MP3'].include? ext)
-                                puts "Sound file".blue + " (#{file.basename}) - #{File.ctime(file).strftime('%F')}"
+                                puts "Sound file".blue + " (#{file.basename}) - #{file.cdate}"
                         else
                                 puts `cat #{file.esc} 2> /dev/null | head -20`
                         end

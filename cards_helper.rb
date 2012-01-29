@@ -251,8 +251,15 @@ class String
                 str
         end
 
+        def cdate
+                File.ctime(self).strftime('%F')
+        end
+
         def basename
                 File.basename self
+        end
+        def dirname
+                File.dirname self
         end
 
         def ex
