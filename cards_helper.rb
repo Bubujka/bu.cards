@@ -251,6 +251,10 @@ class String
                 str
         end
 
+        def basename
+                File.basename self
+        end
+
         def ex
                 File.expand_path(self)
         end
