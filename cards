@@ -55,18 +55,21 @@ OptionParser.new do |opts|
 end.parse!
 
 
-def main 
-        trap("INT") do
-                exit
-        end
-        dir = if have_args? 
+def home_dir
+        if have_args? 
                 ARGV[0].ex
         else
                 rc("default_dir").ex
         end
+end
 
-        FileUtils.mkdir_p dir unless File.exists? dir
-        goto_dir_mode dir
+def main 
+        trap("INT") do
+                exit
+        end
+
+        FileUtils.mkdir_p home_dir unless File.exists? home_dir
+        goto_dir_mode home_dir
 end
 
 main

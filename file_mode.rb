@@ -1,6 +1,6 @@
 def show_current_file_line file
-        
-        puts "= file: #{(file.dirname.basename + '/' + file.basename).green} - #{file.cdate.blue} =\n"
+        puts "= file: #{file.strip_home.green} - #{file.cdate.blue} ="
+        nl
 end
 
 def default_file_action file

@@ -262,6 +262,12 @@ class String
                 File.dirname self
         end
 
+        def strip_home
+                t = self.dup
+                t[home_dir() + '/'] = ""
+                t
+        end
+
         def ex
                 File.expand_path(self)
         end
