@@ -35,6 +35,7 @@ bind:
   O: move_file_upsubdir
   G: git_add_clear_and_autocommit
   p: goto_prj_file
+  "C-p": goto_dairy_file
   b: run_file_in_browser
   l: move_to_later
   L: unlater_all_files

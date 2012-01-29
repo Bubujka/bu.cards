@@ -4,6 +4,11 @@ dir_cmd :git_add_clear_and_autocommit do |dir|
         char_gets
 end
 
+doc "Начать редактировать .dairy файл"
+dir_cmd :goto_dairy_file do |dir|
+        edit_file fjoin(dir, '.dairy').ex
+end
+
 doc "Начать редактировать .prj файл"
 dir_cmd :goto_prj_file do |dir|
         edit_file fjoin(dir, '.prj').ex
