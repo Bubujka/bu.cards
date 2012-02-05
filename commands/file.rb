@@ -83,6 +83,21 @@ file_cmd :move_file_subdir do |file|
         end
 end
 
+doc "Перенести файл в подкаталог относительно домашней директории"
+file_cmd :move_file_homesubdir do |file|
+        dir = home_dir
+        clear
+        if dest = dmenu(dirs_in_pth(dir))
+                safe_mv(file, t = fjoin(dir, dest))
+                flash_s "File #{file.green} moved to #{t.green}"
+                if rnd = random_file_in(dirname(file))
+                        goto_file_mode rnd
+                else
+                        goto_dir_mode dirname(file)
+                end
+        end
+end
+
 file_cmd :move_file_upsubdir do |file|
         title "Перенос файла в соседний-родительский каталог"
         dir = fjoin(dirname(file), '..').ex

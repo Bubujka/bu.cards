@@ -54,7 +54,9 @@ def dirs_in_pth pth
 
         if rc(:hide_empty_dirs)
                 dirs.select! do |v|
-                        Dir.entries(fjoin(pth, v)).size != 2
+                        t = fjoin(pth, v)
+                        !(`find #{t.esc} -type f`.chomp.empty?)
+                        #Dir.entries(t).size != 2
                 end
         end
 
@@ -159,7 +161,7 @@ end
 
 def safe_mv from, to
         FileUtils.mkdir_p(dirname(to))
-        system "mv --backup=t #{from} #{to}"
+        system "mv --backup=t #{from.esc} #{to.esc}"
 end
 
 def title wtf

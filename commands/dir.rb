@@ -25,6 +25,14 @@ dir_cmd :goto_prj_file do |dir|
         edit_file fjoin(dir, '.prj').ex
 end
 
+doc "Перейти к первому подкаталогу"
+dir_cmd :goto_first_subdir do |dir|
+        dirs = dirs_in_pth dir
+        return if dirs.empty?
+        goto_dir_mode fjoin(dir, dirs.first)
+end
+
+doc "Выбрать и перейти в подкаталог"
 dir_cmd :select_and_goto_dir do |dir|
         dirs = dirs_in_pth dir
         return if dirs.empty?
@@ -37,6 +45,7 @@ dir_cmd :select_and_goto_dir do |dir|
         goto_dir_mode fjoin(dir, dest)
 end
 
+doc "Выбрать и перейти к файлу"
 dir_cmd :select_and_goto_file do |dir|
         files = files_in_pth(dir)
         return if files.empty?

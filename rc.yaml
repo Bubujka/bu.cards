@@ -31,8 +31,10 @@ bind:
   x: from_clipboard_to_new_file
   X: file_to_clipboard
   .: goto_current_dir
+  i: goto_first_subdir
   o: move_file_subdir
   O: move_file_upsubdir
+  'C-o': move_file_homesubdir
   G: git_add_clear_and_autocommit
   p: goto_prj_file
   "C-p": goto_dairy_file
