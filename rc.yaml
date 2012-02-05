@@ -37,6 +37,7 @@ bind:
   'C-o': move_file_homesubdir
   G: git_add_clear_and_autocommit
   p: goto_prj_file
+  P: move_file_to_prj_dir
   "C-p": goto_dairy_file
   b: run_file_in_browser
   l: move_to_later

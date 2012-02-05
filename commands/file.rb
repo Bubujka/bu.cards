@@ -29,6 +29,12 @@ file_cmd :move_and_return_to_rnd do |file|
         rnd_file_in_dir dir
 end
 
+doc "Перенести файл в каталог проектов home_dir()/_prj"
+file_cmd :move_file_to_prj_dir do |file|
+        safe_mv file, fjoin(home_dir, '_prj')
+        rnd_file_in_dir dirname(file)
+end
+
 file_cmd :move_edit_and_return_to_rnd do |file|
         clear
         dir = dirname(file)
