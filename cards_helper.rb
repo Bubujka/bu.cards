@@ -180,6 +180,7 @@ def random_file_in dir
 
         diff = files - watched
         if diff.size <= 0
+                flash_s("Next loop on directory")
                 @@watched[dir] = []
                 diff = files
         end
