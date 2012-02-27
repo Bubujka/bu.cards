@@ -28,10 +28,17 @@ bind:
   ?: show_help
   j: next_itm
   k: prev_itm
+  '`': 
+    name: Achievements
+    '`': achieve_and_delete
+    'e': set_achieve_status_error
+    't': set_achieve_status_test
+    'b': set_achieve_status_bug
+    'f': set_achieve_status_feature
   x: from_clipboard_to_new_file
   X: file_to_clipboard
   .: goto_current_dir
-  i: goto_first_subdir
+  '1': goto_first_subdir
   o: move_file_subdir
   O: move_file_upsubdir
   'C-o': move_file_homesubdir

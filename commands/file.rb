@@ -192,3 +192,4 @@ file_cmd :play_sound_file do |file|
         clear
         system "mplayer #{file.esc} -loop 0 2> /dev/null "
 end
+

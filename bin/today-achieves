@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'yaml'
+require 'pp'
+
+def r_file pth
+        `cat #{pth} | sed "s/^--- $//g"`.chomp
+end
+pp YAML::load(r_file(File.open(File.expand_path("~/.db/aux/achievements.yaml"))))

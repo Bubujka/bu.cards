@@ -257,12 +257,34 @@ class String
         def cdate
                 File.ctime(self).strftime('%F')
         end
+        
+        def achieve_status
+                if(self.content.split("\n")[0] =~ /ACHIEVE:(.*)/)
+                        $1.chomp.to_sym
+                else
+                        :regular
+                end
+        end
+
+        def achieve_status= what
+                c = "ACHIEVE:#{what.to_s}\n" + self.content.sub(/ACHIEVE:(.*)\n/, '')
+                self.content = c;
+        end
 
         def basename
                 File.basename self
         end
+
         def dirname
                 File.dirname self
+        end
+
+        def content
+                r_file self
+        end
+
+        def content= what
+                w_file self, what
         end
 
         def strip_home

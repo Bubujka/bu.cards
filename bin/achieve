@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require 'yaml'
+require 'pp'
+require 'enumerator' 
+
+if ARGV.size < 4
+        puts "Wrong arg count. 4 min ( type, score, key1, value1 )"
+        exit
+end
+
+@type = ARGV.shift
+@score = ARGV.shift
+@data = {}
+ARGV.each_slice(2) do |key,value|
+        unless value
+                puts "No value for #{key}"
+                exit
+        end
+        @data[key] = value
+end
+
+t = [ {:time => Time.now.to_i,
+                       :type => @type,
+                       :score => @score, 
+                       :data => @data} ]
+File.open(File.expand_path("~/.db/aux/achievements.yaml") , "a+") do |f|
+        f.write t.to_yaml
+end
