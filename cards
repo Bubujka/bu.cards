@@ -14,6 +14,7 @@ require "stringio"
 
 require "lib/hash.rb"
 
+require "class.rb"
 require "cards_helper.rb"
 require "dir_mode.rb"
 require "file_mode.rb"

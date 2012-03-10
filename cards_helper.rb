@@ -34,6 +34,10 @@ def clear
         print `clear`
 end
 
+def todo_file_pattern
+        /^[0-9].*/
+end
+
 def files_in_pth pth
         arr = Dir.entries(pth).select do |v|
                 !File.directory? fjoin(pth, v) and !(v =='.' || v == '..') 
@@ -44,6 +48,7 @@ def files_in_pth pth
                         !v.match(/^\./)
                 end
         end
+
         arr
 end
 
@@ -78,7 +83,6 @@ def pp_list array, label, ret = false
                         end
                         io.close_write
                         r += io.readlines.to_s + "\n"
-                        r += "---------------------\n"
                 end
         end
         puts(r) unless(ret)
@@ -198,8 +202,11 @@ def goto_file_mode file
         do_what_i_say_in_file file
 end
 
+def _hr
+        '-----------------------------------------------------'.green
+end
 def hr
-        puts '-----------------------------------------------------'.green
+        puts _hr
 end
 
 def nl
@@ -245,58 +252,6 @@ def get_doc
         t
 end
 
-class String
-        def esc
-                return "''" if self.empty?
-                str = self.dup
-                str.gsub!(/([^A-Za-z0-9_\-.,:\/@\n])/n, "\\\\\\1")
-                str.gsub!(/\n/, "'\n'")
-                str
-        end
-
-        def cdate
-                File.ctime(self).strftime('%F')
-        end
-        
-        def achieve_status
-                if(self.content.split("\n")[0] =~ /ACHIEVE:(.*)/)
-                        $1.chomp.to_sym
-                else
-                        :regular
-                end
-        end
-
-        def achieve_status= what
-                c = "ACHIEVE:#{what.to_s}\n" + self.content.sub(/ACHIEVE:(.*)\n/, '')
-                self.content = c;
-        end
-
-        def basename
-                File.basename self
-        end
-
-        def dirname
-                File.dirname self
-        end
-
-        def content
-                r_file self
-        end
-
-        def content= what
-                w_file self, what
-        end
-
-        def strip_home
-                t = self.dup
-                t[home_dir() + '/'] = ""
-                t
-        end
-
-        def ex
-                File.expand_path(self)
-        end
-end
 
 def ob 
         buffer = StringIO.new
