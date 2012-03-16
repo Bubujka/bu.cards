@@ -20,20 +20,14 @@ file_cmd :move_and_return_to_rnd do |file|
         print "Enter dest directory: "
         name = gets.chomp
         return if name.empty?
+        
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
         dest_dir = fjoin(dir, name).ex
-        dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
-        FileUtils::mkdir_p(dest_dir)
-        safe_mv(file, dest_pth)
+        mv_to_dir file, dest_dir
 
         rnd_file_in_dir dir
 end
 
-doc "Перенести файл в каталог проектов home_dir()/_prj"
-file_cmd :move_file_to_prj_dir do |file|
-        safe_mv file, fjoin(home_dir, '_prj')
-        rnd_file_in_dir dirname(file)
-end
 
 file_cmd :move_edit_and_return_to_rnd do |file|
         clear
@@ -42,12 +36,13 @@ file_cmd :move_edit_and_return_to_rnd do |file|
         print "Enter dest directory: "
         name = gets.chomp
         return if name.empty?
+        
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
         dest_dir = fjoin(dir, name).ex
         dest_pth = fjoin(dest_dir, find_next_num_in_dir(dest_dir).to_s)
-        FileUtils::mkdir_p(dest_dir)
-        safe_mv(file, dest_pth)
-        system "#{editor} #{dest_pth}"
+
+        mv_to_file(file, dest_pth)
+        system "#{editor} #{dest_pth.esc}"
 
         rnd_file_in_dir dir
 end
@@ -79,7 +74,7 @@ file_cmd :move_file_subdir do |file|
         dir = dirname(file)
         clear
         if dest = dmenu(dirs_in_pth(dir))
-                safe_mv(file, t = fjoin(dir, dest))
+                mv_to_dir(file, t = fjoin(dir, dest))
                 flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dir)
                         goto_file_mode rnd
@@ -94,7 +89,7 @@ file_cmd :move_file_homesubdir do |file|
         dir = home_dir
         clear
         if dest = dmenu(dirs_in_pth(dir))
-                safe_mv(file, t = fjoin(dir, dest))
+                mv_to_dir(file, t = fjoin(dir, dest))
                 flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dirname(file))
                         goto_file_mode rnd
@@ -109,7 +104,7 @@ file_cmd :move_file_upsubdir do |file|
         dir = fjoin(dirname(file), '..').ex
         clear
         if dest = dmenu(dirs_in_pth(dir))
-                safe_mv(file, t = fjoin(dir, dest))
+                mv_to_dir(file, t = fjoin(dir, dest))
                 flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dirname(file))
                         goto_file_mode rnd
@@ -119,21 +114,22 @@ file_cmd :move_file_upsubdir do |file|
         end
 end
 
+doc "Скрыть файл"
 file_cmd :hide_file do |file|
         dir = dirname(file)
         name = basename(file)
         dest_pth = fjoin(dir, ".#{name}")
-        safe_mv(file, dest_pth)
+        mv_to_file(file, dest_pth)
         rnd_file_in_dir dir
 end
 
 def move_to file, ddir
         dir = dirname(file)
-        name = basename(file)
-        dest_pth = fjoin(dir, "#{ddir}/#{name}")
-        safe_mv(file, dest_pth)
+        dest_dir = fjoin(dir, ddir)
+        mv_to_dir(file, dest_dir)
         rnd_file_in_dir dir
 end
+
 file_cmd :move_to_complete do |file|
         move_to file, 'complete'
 end
@@ -161,11 +157,7 @@ file_cmd :pipe_file do |file|
 end
 
 file_cmd :move_to_waiting do |file|
-        dir = dirname(file)
-        name = basename(file)
-        dest_pth = fjoin(dir, "waiting/#{name}")
-        safe_mv(file, dest_pth)
-        rnd_file_in_dir dir
+        move_to file, 'waiting'
 end
 
 
@@ -193,3 +185,33 @@ file_cmd :play_sound_file do |file|
         system "mplayer #{file.esc} -loop 0 2> /dev/null "
 end
 
+def move_to_home file, dir, save_struct = false
+        if save_struct
+                mv_to_dir file, fjoin(fjoin(home_dir, dir), file.dirname.strip_home)
+        else
+                mv_to_dir file, fjoin(home_dir, dir)
+        end
+        rnd_file_in_dir dirname(file)
+end
+
+
+doc "Перенести файл в каталог проектов home_dir()/_prj"
+file_cmd :move_file_to_home_prj do |file|
+        move_to_home file, '_prj'
+end
+
+doc "Перенести файл в каталог проектов home_dir()/.later/dir
+Сохраняя структуру каталогов
+Добавляя дату переноса"
+file_cmd :move_file_to_home_hidden_later do |file|
+        file.add_date
+        move_to_home file, '.later', true
+end
+
+doc "Перенести файл в каталог проектов home_dir()/.complete/dir
+Сохраняя структуру каталогов
+Добавляя дату переноса"
+file_cmd :move_file_to_home_hidden_complete do |file|
+        file.add_date
+        move_to_home file, '.complete', true
+end

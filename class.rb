@@ -48,11 +48,17 @@ class String
 
         def strip_home
                 t = self.dup
+                return "" if t == home_dir
                 t[home_dir() + '/'] = ""
                 t
         end
 
         def ex
                 File.expand_path(self)
+        end
+
+        def add_date 
+                t = { 'date' => Time.now.to_s, 'file' => self.content}.ya2yaml(:syck_compatible => true)
+                self.content = t
         end
 end

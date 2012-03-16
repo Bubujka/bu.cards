@@ -9,7 +9,7 @@ bind:
   a: new_file_with_user_input_with_next_name
   A: edit_new_file_with_user_name 
   C: copy_edit_and_return 
-  D: rm_file_and_go_rnd 
+  'C-d': rm_file_and_go_rnd 
   d: select_and_goto_dir 
   E: edit_file 
   e: replace_file_with_user_input 
@@ -45,13 +45,15 @@ bind:
   'C-o': move_file_homesubdir
   G: git_add_clear_and_autocommit
   p: goto_prj_file
-  P: move_file_to_prj_dir
+  P: move_file_to_home_prj
   "C-p": goto_dairy_file
   b: run_file_in_browser
   l: move_to_later
   L: unlater_all_files
+  'C-l': move_file_to_home_hidden_later
   w: move_to_waiting
   c: move_to_complete
+  "C-c": move_file_to_home_hidden_complete
   B: run_content_in_browser
   s: search_word_in_dir
   v: play_sound_file

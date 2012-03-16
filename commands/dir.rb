@@ -136,7 +136,7 @@ end
 doc "Переносит все файлы из папки later - в текущий каталог"
 dir_cmd :unlater_all_files do |dir|
         `find #{fjoin(dir, 'later').esc}/* -maxdepth 0 -type f`.chomp.split("\n").each do |v|
-                safe_mv(v, dir)
+                mv_to_dir(v, dir)
         end
 end
 

@@ -163,9 +163,14 @@ def dmenu arr, intro = "Enter num: "
         end
 end
 
-def safe_mv from, to
-        FileUtils.mkdir_p(dirname(to))
-        system "mv --backup=t #{from.esc} #{to.esc}"
+def mv_to_dir file, dir
+        FileUtils.mkdir_p dir
+        system "mv --backup=t #{file.esc} #{dir.esc}"
+end
+
+def mv_to_file file, dfile
+        FileUtils.mkdir_p dfile.dirname
+        system "mv --backup=t #{file.esc} #{dfile.esc}"
 end
 
 def title wtf
