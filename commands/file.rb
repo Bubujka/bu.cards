@@ -222,3 +222,11 @@ file_cmd :move_file_to_home_hidden_complete do |file|
         file.add_date
         move_to_home file, '.complete', true
 end
+
+doc "Перенести файл в каталог проектов home_dir()/_waiting/dir
+Сохраняя структуру каталогов
+Добавляя дату переноса"
+file_cmd :move_file_to_home_waiting do |file|
+        file.add_date
+        move_to_home file, '_waiting', true
+end

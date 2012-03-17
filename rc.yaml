@@ -55,6 +55,7 @@ bind:
   L: unlater_all_files
   'C-l': move_file_to_home_hidden_later
   w: move_to_waiting
+  'C-w': move_file_to_home_waiting
   c: move_to_complete
   "C-c": move_file_to_home_hidden_complete
   B: run_content_in_browser
