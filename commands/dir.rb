@@ -26,10 +26,24 @@ dir_cmd :goto_prj_file do |dir|
 end
 
 doc "Перейти к первому подкаталогу"
-dir_cmd :goto_first_subdir do |dir|
+dir_cmd :goto_subdir_1 do |dir|
         dirs = dirs_in_pth dir
         return if dirs.empty?
         goto_dir_mode fjoin(dir, dirs.first)
+end
+
+doc "Перейти ко второму подкаталогу"
+dir_cmd :goto_subdir_2 do |dir|
+        dirs = dirs_in_pth dir
+        return if dirs.empty?
+        goto_dir_mode fjoin(dir, dirs[1])
+end
+
+doc "Перейти к третьему подкаталогу"
+dir_cmd :goto_subdir_3 do |dir|
+        dirs = dirs_in_pth dir
+        return if dirs.empty?
+        goto_dir_mode fjoin(dir, dirs[2])
 end
 
 doc "Выбрать и перейти в подкаталог"

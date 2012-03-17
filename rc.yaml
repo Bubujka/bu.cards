@@ -6,6 +6,7 @@ hide_todo_files: true
 cache: false
 bind: 
   t: dbg_show_env
+  'C-t': move_file_to_home_today
   a: new_file_with_user_input_with_next_name
   A: edit_new_file_with_user_name 
   C: copy_edit_and_return 
@@ -39,7 +40,9 @@ bind:
   x: from_clipboard_to_new_file
   X: file_to_clipboard
   .: goto_current_dir
-  '1': goto_first_subdir
+  '1': goto_subdir_1
+  '2': goto_subdir_2
+  '3': goto_subdir_3
   o: move_file_subdir
   O: move_file_upsubdir
   'C-o': move_file_homesubdir

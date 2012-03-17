@@ -10,7 +10,10 @@ def default_dir_action dir
                 pth = "#{dir}/#{v}"
                 (v + " (" + `find #{pth.esc} -type f | wc -l`.chomp + ")")
         end
-        content.push pp_list(colored_dirs, 'Dirs', true).gsub(/\([0-9]+\)/){|v| v.blue}.chomp
+        content.push pp_list(colored_dirs, 'Dirs', true).
+                gsub(/\([0-9]+\)/){|v| v.blue}.
+                gsub(/_today/){|v| v.black_on_green}.
+                chomp
         
         files = files_in_pth(dir)
         files_cnt = files.size
