@@ -13,6 +13,18 @@ class String
                 str
         end
 
+        def fj pth
+                fjoin(self, pth)
+        end
+
+        def unyaml
+                YAML::load(self)
+        end
+
+        def unyaml_file
+                self.content.unyaml
+        end
+
         def cdate
                 File.ctime(self).strftime('%F')
         end

@@ -267,3 +267,19 @@ def ob
         buffer.rewind
         buffer.read
 end
+
+def move_to file, ddir
+        dir = dirname(file)
+        dest_dir = fjoin(dir, ddir)
+        mv_to_dir(file, dest_dir)
+        rnd_file_in_dir dir
+end
+
+def move_to_home file, dir, save_struct = false
+        if save_struct
+                mv_to_dir file, fjoin(fjoin(home_dir, dir), file.dirname.strip_home)
+        else
+                mv_to_dir file, fjoin(home_dir, dir)
+        end
+        rnd_file_in_dir dirname(file)
+end

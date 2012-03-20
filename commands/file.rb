@@ -123,12 +123,6 @@ file_cmd :hide_file do |file|
         rnd_file_in_dir dir
 end
 
-def move_to file, ddir
-        dir = dirname(file)
-        dest_dir = fjoin(dir, ddir)
-        mv_to_dir(file, dest_dir)
-        rnd_file_in_dir dir
-end
 
 file_cmd :move_to_complete do |file|
         move_to file, 'complete'
@@ -185,26 +179,9 @@ file_cmd :play_sound_file do |file|
         system "mplayer #{file.esc} -loop 0 2> /dev/null "
 end
 
-def move_to_home file, dir, save_struct = false
-        if save_struct
-                mv_to_dir file, fjoin(fjoin(home_dir, dir), file.dirname.strip_home)
-        else
-                mv_to_dir file, fjoin(home_dir, dir)
-        end
-        rnd_file_in_dir dirname(file)
-end
-
-
 doc "Перенести файл в каталог проектов home_dir()/_prj"
 file_cmd :move_file_to_home_prj do |file|
         move_to_home file, '_prj'
-end
-
-doc "Перенести файл в каталог home_dir()/_today
-Добавляя дату и путь до оригинального файла" 
-file_cmd :move_file_to_home_today do |file|
-        file.add_date_and_path
-        move_to_home file, '_today'
 end
 
 doc "Перенести файл в каталог проектов home_dir()/.later/dir
