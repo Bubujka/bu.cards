@@ -61,4 +61,11 @@ class String
                 t = { 'date' => Time.now.to_s, 'file' => self.content}.ya2yaml(:syck_compatible => true)
                 self.content = t
         end
+
+        def add_date_and_path
+                t = { 'date' => Time.now.to_s,
+                      'path' => self.dirname.strip_home,
+                      'file' => self.content}.ya2yaml(:syck_compatible => true)
+                self.content = t
+        end
 end
