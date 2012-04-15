@@ -49,6 +49,7 @@ end
 
 doc "Удалить файл и перейти к случайному"
 file_cmd :rm_file_and_go_rnd do |file|
+        stats "File deleted"
         flash_s "Deleted: #{file.green}"
         File::unlink(file)
         if !files_in_pth(dir = File.dirname(file)).empty?
@@ -60,6 +61,7 @@ end
 
 doc "Отредактировать файл в редакторе"
 file_cmd :edit_file do |file|
+        stats "File editing"
         system editor, file
         goto_file_mode file
 end
@@ -74,6 +76,7 @@ file_cmd :move_file_subdir do |file|
         dir = dirname(file)
         clear
         if dest = dmenu(dirs_in_pth(dir))
+                stats "File moving"
                 mv_to_dir(file, t = fjoin(dir, dest))
                 flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dir)
@@ -89,6 +92,7 @@ file_cmd :move_file_homesubdir do |file|
         dir = home_dir
         clear
         if dest = dmenu(dirs_in_pth(dir))
+                stats "File moving"
                 mv_to_dir(file, t = fjoin(dir, dest))
                 flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dirname(file))
@@ -104,6 +108,7 @@ file_cmd :move_file_upsubdir do |file|
         dir = fjoin(dirname(file), '..').ex
         clear
         if dest = dmenu(dirs_in_pth(dir))
+                stats "File moving"
                 mv_to_dir(file, t = fjoin(dir, dest))
                 flash_s "File #{file.green} moved to #{t.green}"
                 if rnd = random_file_in(dirname(file))
@@ -123,23 +128,16 @@ file_cmd :hide_file do |file|
         rnd_file_in_dir dir
 end
 
-
-file_cmd :move_to_complete do |file|
-        move_to file, 'complete'
-end
-
-file_cmd :move_to_done do |file|
-        move_to file, 'done'
-end
-
 doc "Перенести файл в папку later"
 file_cmd :move_to_later do |file|
+        stats "File moved to later"
         move_to file, 'later'
 end
 
 doc "Перенести файл в папку stash
 Временное хранилище на период разбора заданий"
 file_cmd :stash_task do |file|
+        stats "File stashed"
         move_to file, 'stash'
 end
 
@@ -172,6 +170,7 @@ file_cmd :replace_file_with_user_input do |file|
         print "Write (enter for abort): ".green
         txt = gets.chomp
         return if txt.empty?
+        stats "File editing"
         w_file file, txt
         goto_file_mode file
 end
@@ -195,22 +194,24 @@ doc "Перенести файл в каталог проектов home_dir()/.
 Сохраняя структуру каталогов
 Добавляя дату переноса"
 file_cmd :move_file_to_home_hidden_later do |file|
+        stats "File moved to later"
         file.add_date
         move_to_home file, '.later', true
 end
 
-doc "Перенести файл в каталог проектов home_dir()/.complete/dir
-Сохраняя структуру каталогов
+doc "Перенести файл в каталог .complete
 Добавляя дату переноса"
-file_cmd :move_file_to_home_hidden_complete do |file|
+file_cmd :move_file_to_hidden_complete do |file|
+        stats "File moved to complete"
         file.add_date
-        move_to_home file, '.complete', true
+        move_to file, '.complete'
 end
 
 doc "Перенести файл в каталог проектов home_dir()/_waiting/dir
 Сохраняя структуру каталогов
 Добавляя дату переноса"
 file_cmd :move_file_to_home_waiting do |file|
+        stats "File moved to waiting"
         file.add_date
         move_to_home file, '_waiting', true
 end

@@ -22,6 +22,7 @@ require "fileutils.rb"
 require "lib/def.rb"
 require "lib/bind.rb"
 require "lib/flash.rb"
+require "lib/statistic.rb"
 
 Dir.glob(File.dirname(__FILE__) + '/commands/*', &method(:require))
 

@@ -30,6 +30,10 @@ def rc what
         cfg[what.to_s]
 end
 
+def to_yaml what
+        what.ya2yaml(:syck_compatible => true)
+end
+
 def clear 
         print `clear`
 end
@@ -202,6 +206,7 @@ end
 
 def goto_file_mode file
         clear
+        stats "File watch"
         show_current_file_line file
         default_file_action file
         do_what_i_say_in_file file
@@ -282,4 +287,8 @@ def move_to_home file, dir, save_struct = false
                 mv_to_dir file, fjoin(home_dir, dir)
         end
         rnd_file_in_dir dirname(file)
+end
+
+def today_date
+        Time.new.strftime("%Y-%m-%d")
 end

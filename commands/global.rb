@@ -121,6 +121,7 @@ global_cmd :default_action do |pth, mode|
         if mode == :file
                 ext = File.extname(pth) 
                 if(['.mp3', '.MP3', '.wav', '.WAV'].include? ext)
+                        stats "Listening audio file"
                         play_sound_file pth
                 end
         end

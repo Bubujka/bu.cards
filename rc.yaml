@@ -1,4 +1,5 @@
 default_dir: ~/gtd
+statistic_dir: ~/.buc-statistic
 hide_empty_dirs: true
 hide_dotted_dirs: true
 hide_dotted_files: true
@@ -57,8 +58,7 @@ bind:
   'C-l': move_file_to_home_hidden_later
   w: move_to_waiting
   'C-w': move_file_to_home_waiting
-  c: move_to_complete
-  "C-c": move_file_to_home_hidden_complete
+  "C-c": move_file_to_hidden_complete
   B: run_content_in_browser
   s: stash_task
   S: unstash_tasks
