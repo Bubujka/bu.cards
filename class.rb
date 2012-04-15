@@ -80,4 +80,14 @@ class String
                       'file' => self.content}.ya2yaml(:syck_compatible => true)
                 self.content = t
         end
+
+        def files
+                Dir.glob(File.join(File.expand_path(self), '*')).select do |file| 
+                       File.file?(file) 
+                end
+        end
+
+        def each_file &block
+                self.files.each &block
+        end
 end

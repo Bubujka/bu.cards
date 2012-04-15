@@ -6,7 +6,7 @@ hide_dotted_files: true
 hide_todo_files: true
 cache: false
 bind: 
-  t: dbg_show_env
+  t: show_today_stats
   T: show_today_tasks
   'C-t': move_file_to_home_today
   a: new_file_with_user_input_with_next_name

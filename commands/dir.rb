@@ -170,3 +170,36 @@ dir_cmd :fetch_notice do |dir|
         system "cd #{dir.esc}; fetch-notice"
 end
 
+
+dir_cmd :show_today_stats do |dir|
+       clear
+       puts "== Today statistic ==".green
+       puts
+       statistic_dir.each_file do |f|
+                i = 0
+                total = 0
+                dates = []
+                
+                File.open(f, 'r').each do |line|
+                        total = total + 1
+                        date = Time.at(line.to_f).strftime("%Y-%m-%d")
+                        unless dates.include? date
+                                dates.push date
+                        end
+
+                        if(date == today_date)
+                                i = i + 1
+                        end
+
+                end
+                avg = total / dates.size
+                if i > avg 
+                        print((i.to_s + "/" + avg.to_s).green)
+                else
+                        print(i.to_s + "/" + avg.to_s)
+                end
+                print  " - "
+                puts f.basename 
+       end
+       char_gets
+end
