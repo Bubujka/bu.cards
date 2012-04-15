@@ -154,6 +154,13 @@ dir_cmd :unlater_all_files do |dir|
         end
 end
 
+doc "Переносит все файлы из папки stash - в текущий каталог"
+dir_cmd :unstash_tasks do |dir|
+        `find #{fjoin(dir, 'stash').esc}/* -maxdepth 0 -type f`.chomp.split("\n").each do |v|
+                mv_to_dir(v, dir)
+        end
+end
+
 doc "Переименовывает все файлы в каталоге по номерам"
 dir_cmd :renumerate_files do |dir|
         system "cd #{dir.esc}; renumerate"

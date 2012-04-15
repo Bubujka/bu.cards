@@ -132,8 +132,15 @@ file_cmd :move_to_done do |file|
         move_to file, 'done'
 end
 
+doc "Перенести файл в папку later"
 file_cmd :move_to_later do |file|
         move_to file, 'later'
+end
+
+doc "Перенести файл в папку stash
+Временное хранилище на период разбора заданий"
+file_cmd :stash_task do |file|
+        move_to file, 'stash'
 end
 
 file_cmd :run_file_in_browser do |file|

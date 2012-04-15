@@ -60,9 +60,9 @@ bind:
   c: move_to_complete
   "C-c": move_file_to_home_hidden_complete
   B: run_content_in_browser
-  s: search_word_in_dir
+  s: stash_task
+  S: unstash_tasks
   v: play_sound_file
-  S: search_word_in_dir_r
   |: pipe_file
   '!': shell_command
   y: show_all_files_as_yaml
