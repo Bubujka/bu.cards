@@ -12,7 +12,7 @@ bind:
   a: new_file_with_user_input_with_next_name
   A: edit_new_file_with_user_name 
   C: copy_edit_and_return 
-  'C-d': rm_file_and_go_rnd 
+  D: rm_file_and_go_rnd 
   d: select_and_goto_dir 
   E: edit_file 
   e: replace_file_with_user_input 

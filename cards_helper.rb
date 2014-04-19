@@ -83,10 +83,11 @@ def pp_list array, label, ret = false
                 r += "#{label.green}: \n"
                 IO.popen("pr --columns 3 -t", "r+") do |io|
                         array.each do |v|
-                                io.puts "#{v}\n"
+                                io.puts "#{v}"
                         end
                         io.close_write
-                        r += io.readlines.to_s + "\n"
+
+                        r += io.readlines.join('') + "\n"
                 end
         end
         puts(r) unless(ret)
@@ -227,9 +228,9 @@ def goto_dir_mode dir
         clear
         show_current_dir_line dir
         if File.exists?(pth = fjoin(dir, '.prj')) and ((prj_data = r_file(pth)) != "")
-                hr
-                puts r_file(pth)
-                hr
+          hr
+          puts r_file(pth)
+          hr
         end
         default_dir_action dir
         do_what_i_say_in_dir dir
