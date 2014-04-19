@@ -12,17 +12,17 @@ require "optparse"
 require "stringio"
 
 
-require "lib/hash.rb"
+require "./lib/hash.rb"
 
-require "class.rb"
-require "cards_helper.rb"
-require "dir_mode.rb"
-require "file_mode.rb"
-require "fileutils.rb"
-require "lib/def.rb"
-require "lib/bind.rb"
-require "lib/flash.rb"
-require "lib/statistic.rb"
+require "./class.rb"
+require "./cards_helper.rb"
+require "./dir_mode.rb"
+require "./file_mode.rb"
+require "fileutils"
+require "./lib/def.rb"
+require "./lib/bind.rb"
+require "./lib/flash.rb"
+require "./lib/statistic.rb"
 
 Dir.glob(File.dirname(__FILE__) + '/commands/*', &method(:require))
 
@@ -39,7 +39,7 @@ require "natural_sort_kernel"
 require "highline/system_extensions"
 include HighLine::SystemExtensions
 
-@@options = {:config => "~/.cardsrc"}
+$options = {:config => "~/.cardsrc"}
 
 OptionParser.new do |opts|
         opts.on( '-h', '--help', 'Display this screen' ) do
@@ -48,7 +48,7 @@ OptionParser.new do |opts|
         end
 
         opts.on( '-c', '--config FILE', "Config file" ) do |f|
-                @@options[:config] = f 
+                $options[:config] = f 
         end
 
         opts.on( '-w', '--without-clear', "Disable clear function" ) do |f|

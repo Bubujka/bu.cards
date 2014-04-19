@@ -1,14 +1,14 @@
-global_cmd :quit do 
+global_cmd :quit do |pth, mode|
         puts " " 
         exit
 end
 
-global_cmd :goto_random_in_default_dir do 
+global_cmd :goto_random_in_default_dir do |pth, mode|
         random_files = `find #{default_dir}/* -type f | sort -R`.split "\n"
         goto_file_mode random_files.first
 end
 
-global_cmd :go_home do
+global_cmd :go_home do |pth, mode|
         goto_dir_mode rc("default_dir").ex
 end
 

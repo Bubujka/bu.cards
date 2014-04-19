@@ -4,7 +4,7 @@ def have_args?
 end
 
 def config_file
-        @@options[:config].ex
+  $options[:config].ex
 end
 
 def rc_exists?
@@ -126,7 +126,7 @@ def get_char
                                 key = "A-" + c.chr
                         end
                   else
-                          if f >= 208
+                          if f.to_i >= 208
                                   key = f.chr + STDIN.getc.chr
                           else
                                   key = f.chr
@@ -184,23 +184,23 @@ end
 def default_dir
         rc "default_dir"
 end
-@@watched = {}
+$watched = {}
 def random_file_in dir
-        @@watched[dir] = [] unless @@watched[dir]
+        $watched[dir] = [] unless $watched[dir]
 
         files = files_in_pth(dir) or []
-        watched = @@watched[dir]
+        watched = $watched[dir]
 
         diff = files - watched
         if diff.size <= 0
                 flash_s("Next loop on directory")
-                @@watched[dir] = []
+                $watched[dir] = []
                 diff = files
         end
 
-        t = diff.choice
+        t = diff.sample
         return unless t
-        @@watched[dir].push t
+        $watched[dir].push t
         return fjoin(dir, t)
 end
 

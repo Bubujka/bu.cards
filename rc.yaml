@@ -63,7 +63,7 @@ bind:
   s: stash_task
   S: unstash_tasks
   v: play_sound_file
-  |: pipe_file
+  '|': pipe_file
   '!': shell_command
   y: show_all_files_as_yaml
   g: 
@@ -76,5 +76,3 @@ bind:
     P: git_pull
     C: git_clear
     g: git_add_clear_commit_push 
-
-

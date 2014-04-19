@@ -1,6 +1,2 @@
 #!/bin/bash
-sudo gem install backports
-sudo gem install colored
-sudo gem install naturalsort
-sudo gem install ya2yaml
-sudo gem install highline
+gem install backports colored naturalsort ya2yaml highline
