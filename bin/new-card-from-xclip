@@ -8,4 +8,4 @@ then
 fi
 cd ~/.db/$1
 xclip -o >> `next-n-in-dir`
-notify-send "writing to $1"
+notify-send -t 500 "writing to $1"
