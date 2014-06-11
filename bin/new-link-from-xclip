@@ -1,5 +1,6 @@
 #!/bin/bash
+. ~/.bashrc
 mkdir -p ~/.db/gtd/links
 cd ~/.db/gtd/links
 xclip -o >> `next-n-in-dir`
-notify-send "Added link to $1"
+notify-send "Added link to gtd"

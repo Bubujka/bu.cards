@@ -1,4 +1,5 @@
 #!/bin/bash
+. ~/.bashrc
 data=`xclip -o`
 if [[ "$data" == *http* ]]
 then
