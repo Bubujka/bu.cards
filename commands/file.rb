@@ -3,7 +3,7 @@ file_cmd :copy_edit_and_return do |file|
         clear
         puts "Copy-Edit-Return"
         print "Enter dest directory: "
-        name = gets.chomp
+        name = $stdin.gets.chomp
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
         pth = fjoin(dirname(file), name).ex
         dir = dirname(pth)
@@ -18,7 +18,7 @@ file_cmd :move_and_return_to_rnd do |file|
         dir = dirname(file)
         puts "Move ->  Return-to-random"
         print "Enter dest directory: "
-        name = gets.chomp
+        name = $stdin.gets.chomp
         return if name.empty?
         
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
@@ -34,7 +34,7 @@ file_cmd :move_edit_and_return_to_rnd do |file|
         dir = dirname(file)
         puts "Move -> Edit -> Return-to-random"
         print "Enter dest directory: "
-        name = gets.chomp
+        name = $stdin.gets.chomp
         return if name.empty?
         
         # todo: если путь начинается с ~ - надо не джоинить его с директорией
@@ -152,7 +152,7 @@ end
 file_cmd :pipe_file do |file|
         clear
         print "cat #{file.esc} | "
-        system "cat #{file.esc} | #{gets.chomp} | #{pager}"
+        system "cat #{file.esc} | #{$stdin.gets.chomp} | #{pager}"
 end
 
 file_cmd :move_to_waiting do |file|
@@ -168,7 +168,7 @@ file_cmd :replace_file_with_user_input do |file|
         puts `cat #{file.esc}`.chomp
         nl
         print "Write (enter for abort): ".green
-        txt = gets.chomp
+        txt = $stdin.gets.chomp
         return if txt.empty?
         stats "File editing"
         w_file file, txt

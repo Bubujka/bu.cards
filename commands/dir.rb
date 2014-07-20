@@ -66,7 +66,7 @@ dir_cmd :select_and_goto_file do |dir|
         clear
         num = 0
         pp_list files.each_index.map{|i| " #{i+1}: #{files[i]}"}, "= Select file in #{dir} ="
-        t = gets.chomp
+        t = $stdin.gets.chomp
         return unless t =~ /^[0-9]+$/
         num = t.to_i - 1
         goto_file_mode fjoin(dir, files[num])
@@ -75,7 +75,7 @@ end
 dir_cmd :create_dir_with_user_name do |dir|
         clear
         print "Enter dir name: "
-        name = gets.chomp
+        name = $stdin.gets.chomp
         FileUtils::mkdir(dir = fjoin(dir, name))
         goto_dir_mode dir
 end
@@ -94,7 +94,7 @@ doc "Создаёт пустой файл и открывает на нём ре
 dir_cmd :new_file_with_user_input_with_next_name do |dir|
         clear
         print "Write: ".green
-        txt = gets.chomp
+        txt = $stdin.gets.chomp
         return if txt.empty?
         next_num = find_next_num_in_dir dir
         pth = fjoin(dir, next_num.to_s)        
@@ -105,7 +105,7 @@ end
 dir_cmd :edit_new_file_with_user_name do |dir|
         clear
         print "Enter file name: ".green
-        name = gets.chomp
+        name = $stdin.gets.chomp
         pth = fjoin(dir, name)        
         FileUtils::touch(pth)
         system "#{editor} #{pth}"
@@ -130,21 +130,21 @@ doc "Выполнить shell команду и посмотреть вывод"
 dir_cmd :shell_command do |dir|
         clear
         print "$ ".green
-        system "cd #{dir.esc} ; #{gets.chomp} | #{pager}"
+        system "cd #{dir.esc} ; #{$stdin.gets.chomp} | #{pager}"
 end
 
 doc "Поиск слова по файлам"
 dir_cmd :search_word_in_dir do |dir|
         clear
         print "Search word: ".green
-        system "cd #{dir.esc} ; grep --color=always -ni #{gets.chomp.esc} * | #{pager}"
+        system "cd #{dir.esc} ; grep --color=always -ni #{$stdin.gets.chomp.esc} * | #{pager}"
 end
 
 doc "Поиск слова по файлам рекурсивно"
 dir_cmd :search_word_in_dir_r do |dir|
         clear
         print "Search word recursive: ".green
-        system "cd #{dir.esc} ; grep --color=always -nri #{gets.chomp.esc} * | #{pager}"
+        system "cd #{dir.esc} ; grep --color=always -nri #{$stdin.gets.chomp.esc} * | #{pager}"
 end
 
 doc "Переносит все файлы из папки later - в текущий каталог"
