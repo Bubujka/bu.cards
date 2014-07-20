@@ -182,9 +182,6 @@ def title wtf
         # todo
 end
 
-def default_dir
-        rc "default_dir"
-end
 $watched = {}
 def random_file_in dir
         $watched[dir] = [] unless $watched[dir]

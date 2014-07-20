@@ -4,6 +4,14 @@ require "yaml"
 require "optparse"
 
 require "stringio"
+require "fileutils"
+require "rubygems"
+require "backports"
+require "colored"
+require "ya2yaml"
+require "natural_sort_kernel"
+
+require "highline/system_extensions"
 
 
 require "./lib/hash.rb"
@@ -12,7 +20,6 @@ require "./class.rb"
 require "./cards_helper.rb"
 require "./dir_mode.rb"
 require "./file_mode.rb"
-require "fileutils"
 require "./lib/def.rb"
 require "./lib/bind.rb"
 require "./lib/flash.rb"
@@ -23,13 +30,6 @@ Dir.glob(File.dirname(__FILE__) + '/commands/*', &method(:require))
 user_commands_file = File.expand_path "~/.bu_commands.rb"
 require user_commands_file if File.exist? user_commands_file
 
-require "rubygems"
-require "backports"
-require "colored"
-require "ya2yaml"
-require "natural_sort_kernel"
-
-require "highline/system_extensions"
 include HighLine::SystemExtensions
 
 $options = {:config => "~/.cardsrc"}
@@ -51,11 +51,7 @@ end.parse!
 
 
 def home_dir
-        if have_args? 
-                ARGV[0].ex
-        else
-                rc("default_dir").ex
-        end
+  ARGV[0].ex
 end
 
 def main 

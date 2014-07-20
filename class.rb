@@ -60,9 +60,10 @@ class String
 
         def strip_home
                 t = self.dup
-                return "" if t == home_dir
-                t[home_dir() + '/'] = ""
-                t
+                if t == home_dir
+                  return "" 
+                end
+                t.sub(home_dir() + '/', '')
         end
 
         def ex
