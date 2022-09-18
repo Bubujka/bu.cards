@@ -34,7 +34,7 @@ def to_yaml what
         what.ya2yaml(:syck_compatible => true)
 end
 
-def clear 
+def clear
         print `clear`
 end
 
@@ -44,8 +44,8 @@ end
 
 def files_in_pth pth
         arr = Dir.entries(pth).select do |v|
-                !File.directory? fjoin(pth, v) and !(v =='.' || v == '..') 
-        end.natural_sort
+                !File.directory? fjoin(pth, v) and !(v =='.' || v == '..')
+        end.sort
 
         if rc(:hide_dotted_files)
                 arr.select! do |v|
@@ -57,9 +57,9 @@ def files_in_pth pth
 end
 
 def dirs_in_pth pth
-        dirs = Dir.entries(pth).select do |v| 
-                File.directory? fjoin(pth, v) and !(v =='.' || v == '..') 
-        end.natural_sort
+        dirs = Dir.entries(pth).select do |v|
+                File.directory? fjoin(pth, v) and !(v =='.' || v == '..')
+        end.sort
 
         if rc(:hide_empty_dirs)
                 dirs.select! do |v|
@@ -110,7 +110,7 @@ def basename pth
 end
 
 def get_char
-        # return char from input or C-? C-A-?. 
+        # return char from input or C-? C-A-?.
         dbg(`stty`)
         key = ""
         begin
@@ -261,9 +261,9 @@ def get_doc
 end
 
 
-def ob 
+def ob
         buffer = StringIO.new
-        old_stdout = $stdout 
+        old_stdout = $stdout
         $stdout = buffer
         yield
         $stdout = old_stdout

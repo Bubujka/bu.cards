@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    backports (3.23.0)
+    colored (1.2)
+    highline (2.0.3)
+    naturalsort (1.2.0)
+    ya2yaml (0.31)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  backports
+  colored
+  highline
+  naturalsort
+  ya2yaml
+
+BUNDLED WITH
+   2.3.22
