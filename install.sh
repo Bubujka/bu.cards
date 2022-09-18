@@ -1,2 +1,3 @@
 #!/bin/bash
-gem install backports colored naturalsort ya2yaml highline
+bundle config set --local path 'vendor/bundle'
+bundle
